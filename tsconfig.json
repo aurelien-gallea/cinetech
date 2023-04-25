@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "outDir": "assets/js",
+        "target": "ESNext",
+        "noEmitOnError": true,
+        "strict": true //  super propriété optionnelle voir la doc TS
+    },
+    "files": [
+        "assets/ts/app.ts",
+        "assets/ts/apiKey.ts",
+        "assets/ts/movies.ts",
+        "assets/ts/series.ts",
+        "assets/ts/movieChoice.ts",
+        "assets/ts/serieChoice.ts",
+
+        
+    ]
+}
