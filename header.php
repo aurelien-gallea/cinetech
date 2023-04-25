@@ -2,7 +2,7 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-md">
     <div class="container">
         <div class="navbar-brand">
-            Smoosh
+            ONchill
         </div>
         <!-- Le bouton s'affichera en petit écran -->
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#monMenuDeroulant">

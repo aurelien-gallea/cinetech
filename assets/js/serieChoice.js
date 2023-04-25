@@ -12,7 +12,6 @@ search("/search/movie");
 let mediaType;
 let status;
 const title = document.querySelector(".param");
-console.log(title.id);
 const getOneMedia = (mediaType) => {
     // creation
     // personnalisation
@@ -48,19 +47,18 @@ const getOneMedia = (mediaType) => {
                 
                 `;
         let arrayGenres = [];
-        //   for (const key in data.genres) {
-        //     arrayGenres.push(data.genres[key].name);
-        //   }
+        for (const key in data.genres) {
+            arrayGenres.push(data.genres[key].name);
+        }
         resume.innerHTML += `<div><b>Résumé : </b>${data.overview}`;
-        //   resume.innerHTML += `<div><b>Genres : </b>${arrayGenres.join(
-        //     ", "
-        //   )}</div>`;
-        resume.innerHTML += `<div><b>date de sortie : </b>${data.release_date}</div>`;
-        resume.innerHTML += `<div><b>Durée : </b>${data.runtime} min</div>`;
+        resume.innerHTML += `<div><b>Genres : </b>${arrayGenres.join(", ")}</div>`;
+        resume.innerHTML += `<div><b>date de sortie 1er épisode: </b>${data.first_air_date}</div>`;
+        resume.innerHTML += `<div><b>date de sortie dernier épisode: </b>${data.last_episode_to_air.air_date}</div>`;
+        resume.innerHTML += `<div><b>Nb de saisons : </b>${data.number_of_seasons}</div>`;
+        resume.innerHTML += `<div><b>Nb d'épisodes : </b>${data.number_of_episodes}</div>`;
         resume.innerHTML += `<div><b>Popularité : </b>${data.popularity}</div>`;
-        resume.innerHTML += `<div><b>Budget : </b>${data.budget} $</div>`;
-        resume.innerHTML += `<div><b>Revenue : </b>${data.revenue} $</div>`;
-        resume.innerHTML += `<div><b>Profit : </b>${data.revenue - data.budget} $</div>`;
+        resume.innerHTML += `<div><b>Distribué par : </b>${data.networks[0].name}</div>`;
+        resume.innerHTML += `<div><b>En production : </b>${data.in_production ? "Oui" : "Non"}</div>`;
         myDiv2.classList.add("d-flex", "gap-3", "flex-column", "flex-md-row", "col-lg-10");
         resume.classList.add("col-sm-8", "border", "rounded", "p-3");
         // appel
