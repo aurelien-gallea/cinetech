@@ -6,17 +6,23 @@ const searchBar = document.querySelector("#searchBar");
 const button = document.querySelector("#button");
 const myContainer = document.querySelector("#myContainer");
 const srcImg = "https://image.tmdb.org/t/p/original";
+const btnBack = document.querySelector("#btnBack");
+btnBack.addEventListener('click', () => window.history.back());
+// si l'image n'existe pas on en met une de base
 const notFindImg = "./assets/images/not-find.jpg";
 //fonction du header
 search("/search/movie");
 let mediaType;
 let status;
+// recuperation de l'id : 2 méthodes
+// envoyé par le back
 const title = document.querySelector(".param");
-console.log(title.id);
+// recupéré via le front
+const getId = () => window.location.href.split("=")[1];
 const getOneMedia = (mediaType) => {
     // creation
     // personnalisation
-    fetch(`https://api.themoviedb.org/3/${mediaType}/${title.id}?api_key=${apiKey}&language=fr-FR`)
+    fetch(`https://api.themoviedb.org/3/${mediaType}/${getId()}?api_key=${apiKey}&language=fr-FR`)
         .then((response) => response.json())
         .then((data) => {
         console.log(data);
@@ -24,7 +30,9 @@ const getOneMedia = (mediaType) => {
         const myDiv2 = document.createElement("div");
         const myCard = document.createElement("div");
         const resume = document.createElement("div");
-        myCard.classList.add("card");
+        const getDateToFrench = (date) => new Date(date).toLocaleDateString("fr-FR");
+        console.log(getDateToFrench(data.release_date));
+        myCard.classList.add("card", "border-0", "bg-dark");
         myCard.style.minWidth = "200px";
         myCard.innerHTML = `
                     
@@ -39,11 +47,11 @@ const getOneMedia = (mediaType) => {
                     
                     
                     ${!data.overview && data.media_type === "person"
-            ? '<div class="card-footer"><span class="badge fs-4 text-end text-black">Popularity :' +
-                data.popularity +
+            ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularity :' +
+                data.popularity.toFixed(0) +
                 "</span></div>"
-            : '<div class="card-footer"><span class="badge fs-4 text-end text-black"> Score : <span>' +
-                data.vote_average +
+            : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
+                data.vote_average.toFixed(1) +
                 "</span></span></div>"}
                 
                 `;
@@ -51,16 +59,24 @@ const getOneMedia = (mediaType) => {
         for (const key in data.genres) {
             arrayGenres.push(data.genres[key].name);
         }
-        resume.innerHTML += `<div><b>Résumé : </b>${data.overview}`;
+        let arrayProductions = [];
+        for (const key in data.production_companies) {
+            arrayProductions.push(data.production_companies[key].name);
+        }
+        console.log(arrayProductions);
+        let profit = data.revenue - data.budget;
+        // rendre les chiffres plus lisibles
+        const numberToMillion = (myNumber) => myNumber >= 1000000 || myNumber <= 1000000 && myNumber < 0 ? (myNumber / 1000000).toFixed(2) + " millions" : myNumber;
         resume.innerHTML += `<div><b>Genres : </b>${arrayGenres.join(", ")}</div>`;
-        resume.innerHTML += `<div><b>date de sortie : </b>${data.release_date}</div>`;
         resume.innerHTML += `<div><b>Durée : </b>${data.runtime} min</div>`;
-        resume.innerHTML += `<div><b>Popularité : </b>${data.popularity}</div>`;
-        resume.innerHTML += `<div><b>Budget : </b>${data.budget} $</div>`;
-        resume.innerHTML += `<div><b>Revenue : </b>${data.revenue} $</div>`;
-        resume.innerHTML += `<div><b>Profit : </b>${data.revenue - data.budget} $</div>`;
+        resume.innerHTML += `<div><b>date de sortie : </b>${getDateToFrench(data.release_date)}</div>`;
+        resume.innerHTML += `<div class="my-2"><b>Résumé : </b>${data.overview.length === 0 ? "désolé aucun résumé n'est disponible !" : data.overview}`;
+        arrayProductions.length === 0 ? null : resume.innerHTML += `<div><b>Production : </b>${arrayProductions.join(', ')}`;
+        resume.innerHTML += `<div><b>Popularité : </b>${data.popularity.toFixed(0)}</div>`;
+        data.budget === 0 ? null : resume.innerHTML += `<div><b>Budget : </b>${numberToMillion(data.budget)} $</div>`;
+        data.revenue === 0 || data.budget === 0 ? null : resume.innerHTML += `<div><b>Profit : </b>${profit === 0 ? "inconnu" : numberToMillion(profit) + " $"} </div>`;
         myDiv2.classList.add("d-flex", "gap-3", "flex-column", "flex-md-row", "col-lg-10");
-        resume.classList.add("col-sm-8", "border", "rounded", "p-3");
+        resume.classList.add("col-md-8", "border", "border-secondary", "rounded", "p-3");
         // appel
         myDiv2.append(myCard, resume);
         myContainer.append(title, myDiv2);

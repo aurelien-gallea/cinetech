@@ -8,23 +8,24 @@ const button: HTMLInputElement = document.querySelector(
 ) as HTMLInputElement;
 const myContainer = document.querySelector("#myContainer") as HTMLDivElement;
 const srcImg: string = "https://image.tmdb.org/t/p/original";
+
+const btnBack = document.querySelector("#btnBack") as HTMLDivElement;
+btnBack.addEventListener('click', () => window.history.back());
+
 const notFindImg: string = "./assets/images/not-find.jpg";
 
 //fonction du header
 search("/search/movie");
 
-let mediaType: "tv" | "movie";
-let status: "top_rated" | "popular" | "upcoming";
 const title = document.querySelector(".param") as HTMLHeadingElement;
+//  on recupère l'id du film/serie
+const getId  = () : string => window.location.href.split("=")[1];
 
 
 const getOneMedia = (mediaType: string): void => {
-  // creation
-
-  // personnalisation
-
+ 
   fetch(
-    `https://api.themoviedb.org/3/${mediaType}/${title.id}?api_key=${apiKey}&language=fr-FR`
+    `https://api.themoviedb.org/3/${mediaType}/${getId()}?api_key=${apiKey}&language=fr-FR`
   )
     .then((response) => response.json())
 
@@ -36,7 +37,9 @@ const getOneMedia = (mediaType: string): void => {
       const myCard = document.createElement("div") as HTMLDivElement;
       const resume = document.createElement("div") as HTMLDivElement;
 
-      myCard.classList.add("card");
+      const getDateToFrench = (date :string) : string => new Date(date).toLocaleDateString("fr-FR");
+
+      myCard.classList.add("card", "border-0", "bg-dark");
       myCard.style.minWidth = "200px";
 
       myCard.innerHTML = `
@@ -59,40 +62,40 @@ const getOneMedia = (mediaType: string): void => {
                     
                     ${
                       !data.overview && data.media_type === "person"
-                        ? '<div class="card-footer"><span class="badge fs-4 text-end text-black">Popularity :' +
-                          data.popularity +
+                        ? '<div class="card-footer bg-light"><span class="badge fs-4 text-end text-black">Popularity :' +
+                          data.popularity.toFixed(0) +
                           "</span></div>"
-                        : '<div class="card-footer"><span class="badge fs-4 text-end text-black"> Score : <span>' +
-                          data.vote_average +
+                        : '<div class="card-footer bg-light"><span class="badge fs-4 text-end text-black"> Score : <span>' +
+                          data.vote_average.toFixed(1) +
                           "</span></span></div>"
                     }
                 
                 `;
-      let arrayGenres = [];
+      let arrayGenres: string[] = [];
       for (const key in data.genres) {
         arrayGenres.push(data.genres[key].name);
       }
-      resume.innerHTML += `<div><b>Résumé : </b>${data.overview}`;
-      resume.innerHTML += `<div><b>Genres : </b>${arrayGenres.join(
-        ", "
-      )}</div>`;
-      resume.innerHTML += `<div><b>date de sortie 1er épisode: </b>${data.first_air_date}</div>`;
-      resume.innerHTML += `<div><b>date de sortie dernier épisode: </b>${data.last_episode_to_air.air_date}</div>`;
+      let arrayNetworks: string[] = [] 
+      for (const key in data.networks) {
+        arrayNetworks.push(data.networks[key].name)
+      }
+      let arrayProductions : string[] = [];
+      for (const key in data.production_companies) {
+        arrayProductions.push(data.production_companies[key].name);
+      }
+      resume.innerHTML += `<div><b>Genres : </b>${arrayGenres.join(", ")}</div>`;
+      resume.innerHTML += `<div><b>date de sortie 1er épisode: </b>${getDateToFrench(data.first_air_date)}</div>`;
+      resume.innerHTML += `<div><b>date de sortie dernier épisode: </b>${getDateToFrench(data.last_episode_to_air.air_date)}</div>`;
       resume.innerHTML += `<div><b>Nb de saisons : </b>${data.number_of_seasons}</div>`;
       resume.innerHTML += `<div><b>Nb d'épisodes : </b>${data.number_of_episodes}</div>`;
-      resume.innerHTML += `<div><b>Popularité : </b>${data.popularity}</div>`;
-     
-      resume.innerHTML += `<div><b>Distribué par : </b>${data.networks[0].name}</div>`;
+      resume.innerHTML += `<div class="my-2"><b>Résumé : </b>${data.overview.length === 0 ? "désolé aucun résumé n'est disponible !" : data.overview }`;
+      arrayProductions.length === 0 ? null : resume.innerHTML += `<div><b>Production : </b>${arrayProductions.join(', ')}`;
+      resume.innerHTML += `<div><b>Popularité : </b>${data.popularity.toFixed(0)}</div>`;
+      resume.innerHTML += `<div><b>Distribué par : </b>${arrayNetworks.join(', ')}</div>`;
       resume.innerHTML += `<div><b>En production : </b>${data.in_production ? "Oui" : "Non" }</div>`;
-      myDiv2.classList.add(
-        "d-flex",
-        "gap-3",
-        "flex-column",
-        "flex-md-row",
-        "col-lg-10",
-        
-      );
-      resume.classList.add("col-sm-8", "border", "rounded", "p-3" );
+
+      myDiv2.classList.add("d-flex","gap-3","flex-column","flex-md-row","col-lg-10");
+      resume.classList.add("col-lg-8", "border", "border-secondary", "rounded", "p-3" );
       // appel
       myDiv2.append(myCard, resume);
       myContainer.append(title, myDiv2);

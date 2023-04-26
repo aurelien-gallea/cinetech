@@ -1,0 +1,29 @@
+
+* {
+    scrollbar-width: 20px;
+   scrollbar-color: orange black;
+   
+}
+
+*::-webkit-scrollbar {
+    background: black;
+    width: 20px;
+    height: 20px;
+    
+}
+
+*::-webkit-scrollbar-thumb {
+    background: orange;
+    border: 5px solid black;
+   
+    border-radius: 50rem;
+}
+
+.orange {
+    background-color: orange;
+    color: white;
+}
+
+.orange:hover {
+    color: black;
+}

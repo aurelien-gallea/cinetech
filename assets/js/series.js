@@ -24,7 +24,7 @@ const getMedia = (mediaType, status, myTitle) => {
         for (const key in data.results) {
             if (data.results[key].vote_count >= 10) {
                 const myCard = document.createElement("div");
-                myCard.classList.add("card");
+                myCard.classList.add("card", "justify-content-between", "bg-black");
                 myCard.style.minWidth = "200px";
                 myCard.style.cursor = "pointer";
                 myCard.id = data.results[key].id;
@@ -42,15 +42,15 @@ const getMedia = (mediaType, status, myTitle) => {
                     
                     ${!data.results[key].overview &&
                     data.results[key].media_type === "person"
-                    ? '<div class="card-footer"><span class="badge fs-3 text-end text-black">Popularity :' +
-                        data.results[key].popularity +
+                    ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularity :' +
+                        data.results[key].popularity.toFixed(0) +
                         "</span></div>"
-                    : '<div class="card-footer"><span class="badge fs-3 text-end text-black"> Score : <span>' +
-                        data.results[key].vote_average +
+                    : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
+                        data.results[key].vote_average.toFixed(1) +
                         "</span></span></div>"}
                 
                 `;
-                myDiv2.classList.add("d-flex", "w-100", "overflow-auto");
+                myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2");
                 // appel
                 myDiv2.append(myCard);
                 myContainer.append(title, myDiv2);
@@ -58,7 +58,7 @@ const getMedia = (mediaType, status, myTitle) => {
         }
     });
 };
-getMedia((mediaType = "tv"), (status = "upcoming"), "En salles");
+getMedia((mediaType = "tv"), (status = "top_rated"), "Séries cultes");
 getMedia((mediaType = "tv"), (status = "popular"), "Populaires");
 setTimeout(() => {
     const target = document.querySelectorAll(".card");
