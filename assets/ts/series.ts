@@ -70,7 +70,7 @@ const getMedia = (mediaType: string, status: string, myTitle: string): void => {
                     }
                 
                 `;
-          myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2");
+          myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2", "rounded");
 
           // appel
           myDiv2.append(myCard);

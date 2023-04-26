@@ -24,7 +24,7 @@
         <script type="module" src="./assets/js/serieChoice.js"></script>
     <?php } else { ?>
         <h1 class="text-center my-5">Les Séries TV</h1>
-        <div id="myContainer" class="d-flex flex-column align-items-center gap-3">
+        <div id="myContainer" class="d-flex flex-column align-items-center gap-3 mx-3">
 
 
         </div>

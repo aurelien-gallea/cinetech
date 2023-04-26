@@ -24,7 +24,7 @@ const getMedia = (mediaType: string, status: string, nbOfpage: number, myTitle: 
   title.classList.add("my-5", "align-self-start", "container");
   title.textContent = myTitle;
   const myDiv2 = document.createElement("div");
-  myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "scroller", "gap-2");
+  myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2", "rounded");
   const cardShowMore = document.createElement("div");
 
   // on créé une carte qui sera ajouté à la fin des autres pour créer un interaction supplémentaire

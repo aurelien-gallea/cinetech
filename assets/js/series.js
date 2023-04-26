@@ -50,7 +50,7 @@ const getMedia = (mediaType, status, myTitle) => {
                         "</span></span></div>"}
                 
                 `;
-                myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2");
+                myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2", "rounded");
                 // appel
                 myDiv2.append(myCard);
                 myContainer.append(title, myDiv2);

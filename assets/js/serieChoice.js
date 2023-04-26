@@ -19,7 +19,7 @@ const getOneMedia = (mediaType) => {
         .then((response) => response.json())
         .then((data) => {
         console.log(data);
-        title.textContent = data.title;
+        title.textContent = data.name;
         const myDiv2 = document.createElement("div");
         const myCard = document.createElement("div");
         const resume = document.createElement("div");
