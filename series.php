@@ -19,7 +19,7 @@
         </div>
         <div class="container d-flex justify-content-center my-5">
 
-            <button id="btnBack" href="./movies.php" class="btn btn-outline-light border-0 orange  px-3 py-2"><span>Retour</span> </button>
+            <button id="btnBack" class="btn btn-outline-light border-0 orange  px-3 py-2"><span>Retour</span> </button>
         </div>
         <script type="module" src="./assets/js/serieChoice.js"></script>
     <?php } else { ?>

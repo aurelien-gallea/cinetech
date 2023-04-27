@@ -11,7 +11,7 @@ const notFindImg = "./assets/images/not-find.jpg";
 search("/search/movie");
 let mediaType;
 let status;
-const getMedia = (mediaType, status, nbOfpage, myTitle) => {
+export const getMedia = (mediaType, status, nbOfpage, myTitle) => {
     // creation
     const title = document.createElement("h2");
     // personnalisation

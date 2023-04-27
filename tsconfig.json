@@ -12,6 +12,7 @@
         "assets/ts/series.ts",
         "assets/ts/movieChoice.ts",
         "assets/ts/serieChoice.ts",
+        "assets/ts/createLinks.ts",
 
         
     ]

@@ -16,7 +16,7 @@ search("/search/movie");
 let mediaType: "tv" | "movie" | "trending/movie";
 let status: "top_rated" | "popular" | "upcoming"  | "day" |"week" ;
 
-const getMedia = (mediaType: string, status: string, nbOfpage: number, myTitle: string ): void => {
+export const getMedia = (mediaType: string, status: string, nbOfpage: number, myTitle: string ): void => {
   // creation
   const title = document.createElement("h2") as HTMLHeadingElement;
 

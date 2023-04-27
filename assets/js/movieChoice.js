@@ -1,3 +1,4 @@
+import { createLinks } from "./createLinks.js";
 import search from "./search.js";
 import apiKey from "./apiKey.js";
 // rechercher ----------
@@ -83,3 +84,66 @@ const getOneMedia = (mediaType) => {
     });
 };
 getOneMedia("movie");
+const getSimilar = (mediaType, myId, myTitle) => {
+    const title = document.createElement("h2");
+    // personnalisation
+    title.classList.add("my-5", "align-self-start", "container");
+    title.textContent = myTitle;
+    const myDiv2 = document.createElement("div");
+    myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2", "rounded");
+    const cardShowMore = document.createElement("div");
+    // on créé une carte qui sera ajouté à la fin des autres pour créer un interaction supplémentaire
+    cardShowMore.classList.add("card", "justify-content-enter", "align-items-center", "bg-black");
+    cardShowMore.style.cursor = "pointer";
+    cardShowMore.style.minWidth = "200px";
+    cardShowMore.innerHTML += '<div><img class="img-fluid" src="./assets/images/show-more.jpg"></div>';
+    fetch(`https://api.themoviedb.org/3/${mediaType}/${myId}/similar?api_key=${apiKey}&language=fr-FR`)
+        .then(response => response.json())
+        .then((data) => {
+        for (const key in data.results) {
+            if (data.results[key].vote_count >= 10) {
+                // création d'une carte pour chaque contenu
+                const myCard = document.createElement("div");
+                myCard.classList.add("card", "justify-content-between", "bg-black");
+                myCard.style.minWidth = "200px";
+                myCard.style.cursor = "pointer";
+                myCard.id = data.results[key].id;
+                myCard.innerHTML += `
+                
+                
+                
+                ${!data.results[key].poster_path
+                    ? !data.results[key].profile_path
+                        ? `<div><img class="img-fluid card-img-top" src=${notFindImg} alt="not found image"></div>`
+                        : `<div><img class="img-fluid card-img-top" src=${srcImg + data.results[key].profile_path} alt="not found image"></div>`
+                    : `<div><img class="img-fluid card-img-top" src=${srcImg + data.results[key].poster_path} alt="not found image"></div>`}
+                
+                
+                
+                ${data.results[key].overview &&
+                    data.results[key].media_type === "movie"
+                    ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularité : ' +
+                        data.results[key].popularity.toFixed(0) +
+                        "</span></div>"
+                    : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
+                        data.results[key].vote_average.toFixed(1) +
+                        "</span></span></div>"}
+            
+            `;
+                // on ajoute la carte dans la div parente
+                myDiv2.append(myCard);
+            }
+        }
+        // appel
+        //  une fois remplie on appel enfin notre carte d'interaction
+        cardShowMore.id = status;
+        myDiv2.append(cardShowMore);
+        myContainer.append(title, myDiv2);
+    });
+};
+// l'affichages des suggestions + liens
+setTimeout(() => {
+    getSimilar("movie", getId(), "Vous pourriez aimer");
+    createLinks("movies");
+    // createLinks();
+}, 200);
