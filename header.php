@@ -2,7 +2,7 @@
     <nav class="navbar navbar-dark bg-dark navbar-expand-md">
         <div class="container">
             <div class="navbar-brand">
-                ONchill
+                Cine<span style="color:orange;">Tech</span>
             </div>
             <!-- Le bouton s'affichera en petit écran -->
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#monMenuDeroulant">
@@ -21,8 +21,11 @@
                         <a href="./series.php" class="nav-link">Séries</a>
                     </li>
                 </ul>
-                <input id="searchBar" class="form-control" type="text">
-                <button id="button">Search</button>
+                <div class="input-group w-50 ms-5">
+
+                    <input id="searchBar" class="form-control" type="text">
+                    <button id="button" class="btn btn-light orange border-0">Rechercher</button>
+                </div>
             </div>
         </div>
     </nav>

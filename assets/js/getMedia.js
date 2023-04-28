@@ -6,7 +6,7 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
     const notFindImg = "./assets/images/not-find.jpg";
     const title = document.createElement("h2");
     // personnalisation
-    title.classList.add("my-5", "align-self-start", "container");
+    title.classList.add("my-2", "align-self-start", "container");
     title.textContent = myTitle;
     const myDiv2 = document.createElement("div");
     myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2", "rounded");

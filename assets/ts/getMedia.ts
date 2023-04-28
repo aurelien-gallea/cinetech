@@ -8,7 +8,7 @@ export const getMedia = (mediaType: string, status: string, nbOfPages: number, m
     const title = document.createElement("h2") as HTMLHeadingElement;
     
     // personnalisation
-    title.classList.add("my-5", "align-self-start", "container");
+    title.classList.add("my-2", "align-self-start", "container");
     title.textContent = myTitle;
     const myDiv2 = document.createElement("div") as HTMLDivElement;
     myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2", "rounded");
