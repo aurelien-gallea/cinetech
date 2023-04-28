@@ -2,7 +2,7 @@ import search from "./search.js";
 import { getMedia } from "./getMedia.js";
 
 //fonction du header
-search("/search/movie");
+search("multi",1);
 
 let mediaType: "tv" | "movie";
 let status: "top_rated" | "popular" | "latest" |"airing_today" |"on_the_air" ;

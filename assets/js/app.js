@@ -1,7 +1,7 @@
 import search from "./search.js";
 import { getMedia } from "./getMedia.js";
 //fonction du header
-search("/search/movie");
+search("multi", 1);
 let mediaType;
 let status;
 getMedia((mediaType = "tv"), (status = "popular"), 3, "Séries Populaires");

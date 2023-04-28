@@ -8,8 +8,21 @@ export const BtnBackMenu = (to : string): HTMLAnchorElement => {
     "nav-link"
   );
   // on met l'affichage du text du bouton en français
-  let nameFr : string;
-  to === "movies" ? nameFr = "Films": nameFr = "Séries";
+  let nameFr : string= "";
+  // to === "movies" ? nameFr = "Films": nameFr = "Séries";
+  switch (to) {
+    case "movies":
+      nameFr = "Films";
+      break;
+    case "series":
+      nameFr = "Séries";
+      break
+    case "actors":
+      nameFr = "Acteurs";
+      break;
+    default:
+      break;
+  }
   btnBackM.textContent = `Retour au menu : ${nameFr}`;
   btnBackM.addEventListener("click", () => window.location.href = `./${to}.php`);
 

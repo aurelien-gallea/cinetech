@@ -1,6 +1,7 @@
 import apiKey from "./apiKey.js";
 
 // rechercher ----------
+const form = document.querySelector("#searchForm") as HTMLFormElement;
 const searchBar = document.querySelector("#searchBar") as HTMLInputElement;
 const button: HTMLInputElement = document.querySelector(
   "#button"
@@ -8,72 +9,135 @@ const button: HTMLInputElement = document.querySelector(
 const myContainer = document.querySelector("#myContainer") as HTMLDivElement;
 const srcImg: string = "https://image.tmdb.org/t/p/w300";
 const notFindImg: string = "./assets/images/not-find.jpg";
-const searchMovie: string = "search/movie";
-const searchCollection: string = "search/collection";
-const searchPeople: string = "search/person";
-const searchMulti: string = "search/multi";
 
-const findSomething = (searchParameter: string) => {
+let mediaType: "tv" | "movie" | "person" | "multi";
+
+const findSomething = (mediaType: string, page: number) => {
   let range: number; // avoir
+  const myContainer = document.querySelector("#myContainer") as HTMLDivElement;
+  const title = document.querySelector(".param") as HTMLHeadingElement;
+  const notFindImg: string = "./assets/images/not-find.jpg";
+  const srcImg: string = "https://image.tmdb.org/t/p/original";
   fetch(
-    `https://api.themoviedb.org/3/${searchParameter}?api_key=${apiKey}&query=${searchBar.value}`
+    `https://api.themoviedb.org/3/search/${mediaType}?api_key=${apiKey}&query=${searchBar.value}`
   )
     .then((response) => response.json())
     .then((data) => {
       range = data.total_pages; // a voir
       console.log(range); // a voir
       console.log(data);
-      for (let i = 1; i <= range; i++) {
+
+      for (const key in data.results) {
+        let newMediaType = data.results[key].media_type;
+        let idMedia = data.results[key].id;
+        console.log("id :" + idMedia);
         fetch(
-          `https://api.themoviedb.org/3/${searchParameter}?api_key=${apiKey}&query=${searchBar.value}&page=${i}`
+          `https://api.themoviedb.org/3/${newMediaType}/${idMedia}?api_key=${apiKey}&query=${searchBar.value}&language=fr-FR&page=${page}`
         )
           .then((response) => response.json())
           .then((data) => {
-            const myDiv2 = document.createElement("div");
-
-            for (const key in data.results) {
-              myDiv2.innerHTML += `<div class="text-dark card myCard" style="max-width: 300px" id="${data.results[key].id}">
-        <div class="card-header d-flex justify-content-between align-items-center">
-        <h3>${
-          !data.results[key].title
-            ? data.results[key].name
-            : data.results[key].title
-        }</h3></div>
-        
-              
-              ${!data.results[key].poster_path ? 
-                
-                !data.results[key].profile_path ? `<div><img class="img-fluid" src=${notFindImg} alt="not found image"></div>`
-                :
-                  `<div><img class="img-fluid" src=${srcImg + data.results[key].profile_path} alt="not found image"></div>`
-                
-              :
-                `<div><img class="img-fluid" src=${srcImg + data.results[key].poster_path} alt="not found image"></div>`
-              }
-              
-
-              
-              ${!data.results[key].overview && data.results[key].media_type === "person" ? 
-                  ( '<div class="card-footer"><span class="badge fs-3 text-end text-black">Popularity :' +  data.results[key].popularity +"</span></div>")
-                : ( '<div class="card-footer"><span class="badge fs-3 text-end text-black"> Score : <span>' + data.results[key].vote_average + "</span></span></div>")
-              }
+            console.log(data);
             
-            </div>`;
+            console.log(data.name);
+            const myDiv2 = document.createElement("div");
+            const myCard = document.createElement("a") as HTMLAnchorElement;
+  
+            myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");
+            myCard.style.minWidth = "200px";
+            myCard.style.maxWidth = "300px";
+            myCard.id = data.id;
+            let title: string = "";
+            if (newMediaType === "movie") {
+                myCard.href = "movies.php?id=" + myCard.id;
+                title = data.title;
+              } else if (newMediaType === "tv") {
+                myCard.href = "series.php?id=" + myCard.id;
+                title = data.name;
+              } else if (newMediaType === "trending/movie"){
+                myCard.href = "movies.php?id=" + myCard.id;
+                title = data.title;
+              } else if (newMediaType === "person") {
+                myCard.href = "actors.php?id=" + myCard.id;
+                title = data.name;
+            }
+
+            myCard.innerHTML += `
+                      
+                      
+                      <div class="text-center fs-5 py-2"><span >${title}</span></div>
+                      ${
+                        !data.poster_path
+                          ? !data.profile_path
+                            ? `<div><img class="img-fluid card-img-top" src=${notFindImg} alt="not found image"></div>`
+                            : `<div><img class="img-fluid card-img-top" src=${
+                                srcImg + data.profile_path
+                              } alt="not found image"></div>`
+                          : `<div><img class="img-fluid card-img-top" src=${
+                              srcImg + data.poster_path
+                            } alt="not found image"></div>`
+                      }
+                      
+                      
+                      
+                      ${
+                        !data.overview &&
+                        data.media_type !== "person"
+                          ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularity :' +
+                            data.popularity.toFixed(0) +
+                            "</span></div>"
+                          : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
+                            data.vote_average.toFixed(1) +
+                            "</span></span></div>"
+                      }
+                  
+                  `;
+
             myDiv2.classList.add(
               "d-flex",
-              "flex-wrap",
-              "justify-content-center", "gap-5"
+              "gap-3",
+              "flex-column",
+              "flex-md-row"
             );
-
+            
+            // appel
+            myDiv2.append(myCard);
             myContainer.append(myDiv2);
-          };
-      })
-    };
-});
-}
-button.addEventListener("click", () => {
-  myContainer.innerHTML = "";
-  findSomething(searchMovie);
-});
+          })
+          .catch((error) => {
+            console.log(error);
+            // myContainer.innerHTML = "<h1>404 cette page n'existe pas</h1>";
+          });
+      }
+    });
+};
 
+// On autorise le formulaire qu'avec un minimum de 3 caractères
+searchBar.addEventListener("keyup", () => {
+  if (searchBar.value.length <2) {
+      searchBar.placeholder = "2 caractères minimum...";
+      searchBar.classList.add("text-danger");
+      button.style.cursor = "not-allowed";
+      button.classList.remove("orange");
+      
+    } else {
+      button.style.cursor = "pointer";
+      searchBar.classList.remove('text-danger', "bg-black");
+      button.classList.add("orange");
+
+      
+    }
+})
+// on annule le formulaire pour pouvoir valider via entrer et empecher la redirection
+form.addEventListener('submit', (e)=> e.preventDefault());
+
+button.addEventListener("click", () => {
+        if(searchBar.value.length >= 2) {
+          myContainer.innerHTML = "";
+          findSomething("multi", 1);
+          
+        } else {
+          searchBar.classList.add("bg-black");
+          searchBar.value ="";
+        }
+      });
 export default findSomething;

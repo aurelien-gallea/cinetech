@@ -30,7 +30,8 @@
         <h1 class="text-center my-5">Les films</h1>
         <div id="btnContainer" class="container d-flex justify-content-center my-4 flex-wrap gap-3"></div>
 
-        <div id="myContainer" class="d-flex flex-column align-items-center gap-3 mx-3">
+        <div id="myContainer" class="d-flex flex-column justify-content-center flex-wrap gap-3 mx-3"></div>
+
 
 
         </div>

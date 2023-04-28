@@ -4,7 +4,7 @@ import { BtnBackMenu, BtnBack } from "./BtnBackMenu.js";
 
 
 //fonction du header
-search("/search/movie");
+// search("/search/movie");
 
 let mediaType: "tv";
 let status: "top_rated" | "popular" | "latest" |"airing_today" |"on_the_air" ;

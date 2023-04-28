@@ -8,6 +8,7 @@ export const getOneMedia = (mediaType, idMedia, casting) => {
     fetch(`https://api.themoviedb.org/3/${mediaType}/${idMedia}?api_key=${apiKey}&language=fr-FR`)
         .then((response) => response.json())
         .then((data) => {
+        console.log(data);
         mediaType === "movie" ? title.textContent = data.title : title.textContent = data.name;
         const myDiv2 = document.createElement("div");
         const myCard = document.createElement("div");
@@ -27,8 +28,8 @@ export const getOneMedia = (mediaType, idMedia, casting) => {
                       
                       
                       
-                      ${!data.overview && data.media_type === "person"
-            ? '<div class="card-footer bg-light"><span class="badge fs-4 text-end text-black">Popularity :' +
+                      ${!data.overview
+            ? '<div class="card-footer bg-light"><span class="badge fs-4 text-end text-black">Popularité : ' +
                 data.popularity.toFixed(0) +
                 "</span></div>"
             : '<div class="card-footer bg-light"><span class="badge fs-4 text-end text-black"> Score : <span>' +
@@ -48,19 +49,26 @@ export const getOneMedia = (mediaType, idMedia, casting) => {
         for (const key in data.production_companies) {
             arrayProductions.push(data.production_companies[key].name);
         }
-        resume.innerHTML += `<div><b>Genres : </b>${arrayGenres.join(", ")}</div>`;
-        if (mediaType === "movie") {
-            resume.innerHTML += `<div><b>Durée : </b>${data.runtime} min</div>`;
-            resume.innerHTML += `<div><b>date de sortie : </b>${getDateToFrench(data.release_date)}</div>`;
+        if (mediaType !== "person") {
+            resume.innerHTML += `<div><b>Genres : </b>${arrayGenres.join(", ")}</div>`;
+            if (mediaType === "movie") {
+                resume.innerHTML += `<div><b>Durée : </b>${data.runtime} min</div>`;
+                resume.innerHTML += `<div><b>date de sortie : </b>${getDateToFrench(data.release_date)}</div>`;
+            }
+            if (mediaType === "tv") {
+                resume.innerHTML += `<div><b>date de sortie 1er épisode: </b>${getDateToFrench(data.first_air_date)}</div>`;
+                resume.innerHTML += `<div><b>date de sortie dernier épisode: </b>${getDateToFrench(data.last_episode_to_air.air_date)}</div>`;
+                resume.innerHTML += `<div><b>Nb de saisons : </b>${data.number_of_seasons}</div>`;
+                resume.innerHTML += `<div><b>Nb d'épisodes : </b>${data.number_of_episodes}</div>`;
+            }
+            resume.innerHTML += `<div class="my-3"><b>Résumé : </b>${data.overview.length === 0 ? "désolé aucun résumé n'est disponible !" : data.overview}`;
+            arrayProductions.length === 0 ? null : resume.innerHTML += `<div><b>Production : </b>${arrayProductions.join(', ')}`;
         }
-        if (mediaType === "tv") {
-            resume.innerHTML += `<div><b>date de sortie 1er épisode: </b>${getDateToFrench(data.first_air_date)}</div>`;
-            resume.innerHTML += `<div><b>date de sortie dernier épisode: </b>${getDateToFrench(data.last_episode_to_air.air_date)}</div>`;
-            resume.innerHTML += `<div><b>Nb de saisons : </b>${data.number_of_seasons}</div>`;
-            resume.innerHTML += `<div><b>Nb d'épisodes : </b>${data.number_of_episodes}</div>`;
+        if (mediaType === "person") {
+            resume.innerHTML += `<div class="mb-3"><b>Biographie : </b>${data.biography}`;
+            resume.innerHTML += `<div><b>Date de naissance : </b>${getDateToFrench(data.birthday)}`;
+            data.deathday !== null ? resume.innerHTML += `<div><b>Décès : </b>${getDateToFrench(data.deathday)}` : null;
         }
-        resume.innerHTML += `<div class="my-3"><b>Résumé : </b>${data.overview.length === 0 ? "désolé aucun résumé n'est disponible !" : data.overview}`;
-        arrayProductions.length === 0 ? null : resume.innerHTML += `<div><b>Production : </b>${arrayProductions.join(', ')}`;
         resume.innerHTML += `<div><b>Popularité : </b>${data.popularity.toFixed(0)}</div>`;
         if (mediaType === "tv") {
             resume.innerHTML += `<div><b>Distribué par : </b>${arrayNetworks.join(', ')}</div>`;
@@ -72,8 +80,10 @@ export const getOneMedia = (mediaType, idMedia, casting) => {
             data.budget === 0 ? null : resume.innerHTML += `<div><b>Budget : </b>${numberToMillion(data.budget)} $</div>`;
             data.revenue === 0 || data.budget === 0 ? null : resume.innerHTML += `<div><b>Profit : </b>${profit === 0 ? "inconnu" : numberToMillion(profit) + " $"} </div>`;
         }
-        // on rajoute le casting
-        casting.length > 0 ? resume.innerHTML += `<div class="mt-3"><b>Acteurs principaux : </b>${casting.join(', ')}</div>` : null;
+        if (mediaType !== "person") {
+            // on rajoute le casting
+            casting.length > 0 ? resume.innerHTML += `<div class="mt-3"><b>Acteurs principaux : </b>${casting.join(', ')}</div>` : null;
+        }
         myDiv2.classList.add("d-flex", "gap-3", "flex-column", "flex-md-row");
         resume.classList.add("col-lg-8", "border", "border-secondary", "rounded", "p-3");
         // appel

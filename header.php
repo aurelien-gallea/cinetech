@@ -1,8 +1,10 @@
 <header>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top">
         <div class="container">
             <div class="navbar-brand">
-                Cine<span style="color:orange;">Tech</span>
+                <a href="./" class="nav-link fs-3">
+                    Cine<span style="color:orange;">Tech</span>
+                </a>
             </div>
             <!-- Le bouton s'affichera en petit écran -->
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#monMenuDeroulant">
@@ -21,12 +23,17 @@
                         <a href="./series.php" class="nav-link">Séries</a>
                     </li>
                 </ul>
-                <div class="input-group w-50 ms-5">
-
-                    <input id="searchBar" class="form-control" type="text">
-                    <button id="button" class="btn btn-light orange border-0">Rechercher</button>
+                <div class="col-md-6 my-2">
+                    <form id="searchForm">
+                        <div class="input-group  ms-md-5">
+                            
+                            <input id="searchBar" class="form-control" type="search" placeholder="Rechercher film/série/acteur...">
+                            <button id="button" class="btn btn-light orange border-0">Rechercher</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </nav>
 </header>
+<div style="height:50px"></div>

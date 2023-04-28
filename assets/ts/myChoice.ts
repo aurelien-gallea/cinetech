@@ -5,7 +5,7 @@ import { BtnBackMenu, BtnBack } from './BtnBackMenu.js';
 import { getVideo } from "./getVideo.js";
 import apiKey from "./apiKey.js";
 //fonction du header
-search("/search/movie");
+// search("/search/movie");
 
 //  on recupère l'id du film/serie
 const getId  = () : string => window.location.href.split("=")[1];
@@ -18,6 +18,10 @@ if (window.location.href.includes("series")) {
 if (window.location.href.includes("movies")) {
   direction = "movies";
   mediaType = "movie";
+}
+if (window.location.href.includes("actors")) {
+  direction = "actors";
+  mediaType = "person";
 }
 document.body.querySelector("#btnContainer")?.prepend( BtnBackMenu(direction), BtnBack());
 
@@ -39,6 +43,9 @@ fetch(`https://api.themoviedb.org/3/${mediaType}/${getId()}/credits?api_key=${ap
 // on met un délais d'execution pour être sûr de tout avoir dans le bon ordre
 
 setTimeout(() =>getOneMedia(mediaType, getId(), casting),150) ;
-// l'affichages des suggestions + liens
-setTimeout(()=> getVideo(mediaType, getId()), 300);
-setTimeout(()=> getSimilar(mediaType,getId(), 3, "Vous pourriez aimer"), 450);
+// l'affichages des suggestions + liens => exclue si c'est un acteur
+if (!window.location.href.includes("actors")) {
+
+  setTimeout(()=> getVideo(mediaType, getId()), 300);
+  setTimeout(()=> getSimilar(mediaType,getId(), 3, "Vous pourriez aimer"), 450);
+}

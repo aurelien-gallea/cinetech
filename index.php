@@ -17,10 +17,7 @@
         <h1 class="text-center my-5">Bienvenue sur CineTech !</h1>
         <div id="btnContainer" class="container d-flex justify-content-center my-4 flex-wrap gap-3"></div>
 
-        <div id="myContainer" class="d-flex flex-column align-items-center gap-3 mx-3">
-
-
-        </div>
+        <div id="myContainer" class="d-flex justify-content-center flex-wrap gap-3 mx-3"></div>
         <footer class="mt-5"></footer>
         <script type="module" src="./assets/js/app.js"></script>
   

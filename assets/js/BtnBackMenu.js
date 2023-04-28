@@ -2,8 +2,21 @@ export const BtnBackMenu = (to) => {
     const btnBackM = document.createElement("a");
     btnBackM.classList.add("btn", "btn-outline-secondary", "px-3", "py-2", "nav-link");
     // on met l'affichage du text du bouton en français
-    let nameFr;
-    to === "movies" ? nameFr = "Films" : nameFr = "Séries";
+    let nameFr = "";
+    // to === "movies" ? nameFr = "Films": nameFr = "Séries";
+    switch (to) {
+        case "movies":
+            nameFr = "Films";
+            break;
+        case "series":
+            nameFr = "Séries";
+            break;
+        case "actors":
+            nameFr = "Acteurs";
+            break;
+        default:
+            break;
+    }
     btnBackM.textContent = `Retour au menu : ${nameFr}`;
     btnBackM.addEventListener("click", () => window.location.href = `./${to}.php`);
     return btnBackM;
