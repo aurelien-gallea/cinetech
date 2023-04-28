@@ -3,24 +3,31 @@ import { getSimilar } from "./getSimilarMedia.js";
 import { getOneMedia } from './getOneMedia.js';
 import { BtnBackMenu, BtnBack } from './BtnBackMenu.js';
 import { getVideo } from "./getVideo.js";
+
 //fonction du header
 search("/search/movie");
+
 //  on recupère l'id du film/serie
-const getId = () => window.location.href.split("=")[1];
-let direction = "";
-let mediaType = "";
+const getId  = () : string => window.location.href.split("=")[1];
+let direction : string = "";
+let mediaType : string = "";
 if (window.location.href.includes("series")) {
-    direction = "series";
-    mediaType = "tv";
+  direction = "series";
+  mediaType = "tv";
 }
 if (window.location.href.includes("movies")) {
-    direction = "movies";
-    mediaType = "movie";
+  direction = "movies";
+  mediaType = "movie";
 }
-document.body.querySelector("#btnContainer")?.prepend(BtnBackMenu(direction), BtnBack());
+document.body.querySelector("#btnContainer")?.prepend( BtnBackMenu(direction), BtnBack());
+
 getOneMedia(mediaType, getId());
 // l'affichages des suggestions + liens
-setTimeout(() => getVideo(mediaType, getId()), 200);
+setTimeout(()=> getVideo(mediaType, getId()), 200);
 setTimeout(() => {
-    getSimilar(mediaType, getId(), 3, "Vous pourriez aimer");
+  
+  getSimilar(mediaType,getId(), 3, "Vous pourriez aimer");
+  
+  
+  
 }, 400);

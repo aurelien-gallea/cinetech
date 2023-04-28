@@ -1,192 +1,23 @@
 import search from "./search.js";
-import apiKey from "./apiKey.js";
-import { createLinks } from "./createLinks.js";
-// rechercher ----------
-console.log(search);
-const searchBar = document.querySelector("#searchBar") as HTMLInputElement;
-const button: HTMLInputElement = document.querySelector(
-  "#button"
-) as HTMLInputElement;
-const myContainer = document.querySelector("#myContainer") as HTMLDivElement;
-const srcImg: string = "https://image.tmdb.org/t/p/original";
-
-const btnBack = document.querySelector("#btnBack") as HTMLDivElement;
-btnBack.addEventListener('click', () => window.history.back());
-
-const notFindImg: string = "./assets/images/not-find.jpg";
+import { getSimilar } from "./getSimilarMedia.js";
+import { getOneMedia } from './getOneMedia.js';
+import { BtnBackMenu, BtnBack } from './BtnBackMenu.js';
+import { getVideo } from "./getVideo.js";
 
 //fonction du header
 search("/search/movie");
 
-const title = document.querySelector(".param") as HTMLHeadingElement;
 //  on recupère l'id du film/serie
 const getId  = () : string => window.location.href.split("=")[1];
+document.body.querySelector("#btnContainer")?.prepend( BtnBackMenu("series"), BtnBack());
 
-
-const getOneMedia = (mediaType: string): void => {
- 
-  fetch(
-    `https://api.themoviedb.org/3/${mediaType}/${getId()}?api_key=${apiKey}&language=fr-FR`
-  )
-    .then((response) => response.json())
-
-    .then((data) => {
-      console.log(data);
-      title.textContent = data.name;
-      const myDiv2 = document.createElement("div");
-
-      const myCard = document.createElement("div") as HTMLDivElement;
-      const resume = document.createElement("div") as HTMLDivElement;
-
-      const getDateToFrench = (date :string) : string => new Date(date).toLocaleDateString("fr-FR");
-
-      myCard.classList.add("card", "border-0", "bg-dark");
-      myCard.style.minWidth = "200px";
-
-      myCard.innerHTML = `
-                    
-                    
-                    
-                    ${
-                      !data.poster_path
-                        ? !data.profile_path
-                          ? `<div><img class="img-fluid card-img-top" src=${notFindImg} alt="not found image"></div>`
-                          : `<div><img class="img-fluid card-img-top" src=${
-                              srcImg + data.profile_path
-                            } alt="not found image"></div>`
-                        : `<div><img class="img-fluid card-img-top" src=${
-                            srcImg + data.poster_path
-                          } alt="not found image"></div>`
-                    }
-                    
-                    
-                    
-                    ${
-                      !data.overview && data.media_type === "person"
-                        ? '<div class="card-footer bg-light"><span class="badge fs-4 text-end text-black">Popularity :' +
-                          data.popularity.toFixed(0) +
-                          "</span></div>"
-                        : '<div class="card-footer bg-light"><span class="badge fs-4 text-end text-black"> Score : <span>' +
-                          data.vote_average.toFixed(1) +
-                          "</span></span></div>"
-                    }
-                
-                `;
-      let arrayGenres: string[] = [];
-      for (const key in data.genres) {
-        arrayGenres.push(data.genres[key].name);
-      }
-      let arrayNetworks: string[] = [] 
-      for (const key in data.networks) {
-        arrayNetworks.push(data.networks[key].name)
-      }
-      let arrayProductions : string[] = [];
-      for (const key in data.production_companies) {
-        arrayProductions.push(data.production_companies[key].name);
-      }
-      resume.innerHTML += `<div><b>Genres : </b>${arrayGenres.join(", ")}</div>`;
-      resume.innerHTML += `<div><b>date de sortie 1er épisode: </b>${getDateToFrench(data.first_air_date)}</div>`;
-      resume.innerHTML += `<div><b>date de sortie dernier épisode: </b>${getDateToFrench(data.last_episode_to_air.air_date)}</div>`;
-      resume.innerHTML += `<div><b>Nb de saisons : </b>${data.number_of_seasons}</div>`;
-      resume.innerHTML += `<div><b>Nb d'épisodes : </b>${data.number_of_episodes}</div>`;
-      resume.innerHTML += `<div class="my-2"><b>Résumé : </b>${data.overview.length === 0 ? "désolé aucun résumé n'est disponible !" : data.overview }`;
-      arrayProductions.length === 0 ? null : resume.innerHTML += `<div><b>Production : </b>${arrayProductions.join(', ')}`;
-      resume.innerHTML += `<div><b>Popularité : </b>${data.popularity.toFixed(0)}</div>`;
-      resume.innerHTML += `<div><b>Distribué par : </b>${arrayNetworks.join(', ')}</div>`;
-      resume.innerHTML += `<div><b>En production : </b>${data.in_production ? "Oui" : "Non" }</div>`;
-
-      myDiv2.classList.add("d-flex","gap-3","flex-column","flex-md-row","col-lg-10");
-      resume.classList.add("col-lg-8", "border", "border-secondary", "rounded", "p-3" );
-      // appel
-      myDiv2.append(myCard, resume);
-      myContainer.append(title, myDiv2);
-    })
-    .catch(error => console.log(error));
-};
-
-getOneMedia("tv");
-
-
-
-const getSimilar = (mediaType: string, myId: string, myTitle : string) => {
-
-  const title = document.createElement("h2") as HTMLHeadingElement;
-
-  // personnalisation
-  title.classList.add("my-5", "align-self-start", "container");
-  title.textContent = myTitle;
-  const myDiv2 = document.createElement("div");
-  myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2", "rounded");
-  const cardShowMore = document.createElement("div");
-
-  // on créé une carte qui sera ajouté à la fin des autres pour créer un interaction supplémentaire
-  cardShowMore.classList.add("card", "justify-content-enter", "align-items-center", "bg-black");
-  cardShowMore.style.cursor = "pointer";
-  cardShowMore.style.minWidth = "200px";
-  cardShowMore.innerHTML += '<div><img class="img-fluid" src="./assets/images/show-more.jpg"></div>';
-
-  fetch(`https://api.themoviedb.org/3/${mediaType}/${myId}/similar?api_key=${apiKey}&language=fr-FR`)
-  .then(response => response.json())
-  .then((data) => {
-        
-    for (const key in data.results) {
-      if (data.results[key].vote_count >= 10) {
-        
-        // création d'une carte pour chaque contenu
-        const myCard = document.createElement("div") as HTMLDivElement;
-        
-        myCard.classList.add("card", "justify-content-between", "bg-black");
-        myCard.style.minWidth = "200px";
-      myCard.style.cursor = "pointer";
-      myCard.id = data.results[key].id;
-
-      myCard.innerHTML += `
-                
-                
-                
-                ${
-                  !data.results[key].poster_path
-                    ? !data.results[key].profile_path
-                      ? `<div><img class="img-fluid card-img-top" src=${notFindImg} alt="not found image"></div>`
-                      : `<div><img class="img-fluid card-img-top" src=${
-                          srcImg + data.results[key].profile_path
-                        } alt="not found image"></div>`
-                    : `<div><img class="img-fluid card-img-top" src=${
-                        srcImg + data.results[key].poster_path
-                      } alt="not found image"></div>`
-                }
-                
-                
-                
-                ${
-                  data.results[key].overview &&
-                  data.results[key].media_type === "movie"
-                    ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularité : ' +
-                      data.results[key].popularity.toFixed(0) +
-                      "</span></div>"
-                    : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
-                      data.results[key].vote_average.toFixed(1) +
-                      "</span></span></div>"
-                }
-            
-            `;
-
-     
-      // on ajoute la carte dans la div parente
-      myDiv2.append(myCard);
-    }
-  }
-   // appel
-  //  une fois remplie on appel enfin notre carte d'interaction
-      cardShowMore.id = status;
-      myDiv2.append(cardShowMore);
-      myContainer.append(title, myDiv2);
-    });
-  }
-  // l'affichages des suggestions + liens
-  setTimeout(() => {
-    getSimilar("tv",getId(), "Vous pourriez aimer");
-    createLinks("series");
+getOneMedia("tv", getId());
+// l'affichages des suggestions + liens
+setTimeout(()=> getVideo("tv", getId()), 200);
+setTimeout(() => {
+  
+  getSimilar("tv",getId(), 3, "Vous pourriez aimer");
   
   
-}, 200);
+  
+}, 400);
