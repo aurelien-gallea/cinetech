@@ -3,6 +3,7 @@ import { getOneMedia } from './getOneMedia.js';
 import { BtnBackMenu, BtnBack } from './BtnBackMenu.js';
 import { getVideo } from "./getVideo.js";
 import apiKey from "./apiKey.js";
+import { getCredits } from "./getCredits.js";
 //fonction du header
 // search("/search/movie");
 //  on recupère l'id du film/serie
@@ -40,4 +41,8 @@ setTimeout(() => getOneMedia(mediaType, getId(), casting), 150);
 if (!window.location.href.includes("actors")) {
     setTimeout(() => getVideo(mediaType, getId()), 300);
     setTimeout(() => getSimilar(mediaType, getId(), 3, "Vous pourriez aimer"), 450);
+}
+else {
+    setTimeout(() => getCredits(getId(), "movie_credits", 1, "a joué dans ces films : "), 400);
+    setTimeout(() => getCredits(getId(), "tv_credits", 1, "a joué dans ces séries : "), 400);
 }

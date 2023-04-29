@@ -22,47 +22,50 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
         fetch(`https://api.themoviedb.org/3/${mediaType}/${status}?api_key=${apiKey}&language=fr-FR&page=${i}`)
             .then((response) => response.json())
             .then((data) => {
+            console.log(data);
             for (const key in data.results) {
-                if (data.results[key].vote_count >= 10) {
-                    const myCard = document.createElement("a");
-                    myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");
-                    myCard.style.minWidth = "200px";
-                    myCard.style.maxWidth = "300px";
-                    myCard.id = data.results[key].id;
-                    if (mediaType === "movie") {
-                        myCard.href = "movies.php?id=" + myCard.id;
-                    }
-                    else if (mediaType === "tv") {
-                        myCard.href = "series.php?id=" + myCard.id;
-                    }
-                    else if (mediaType === "trending/movie") {
-                        myCard.href = "movies.php?id=" + myCard.id;
-                    }
-                    myCard.innerHTML += `
+                // if (data.results[key].vote_count >= 10) {
+                const myCard = document.createElement("a");
+                myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");
+                myCard.style.minWidth = "200px";
+                myCard.style.maxWidth = "300px";
+                myCard.id = data.results[key].id;
+                if (mediaType === "movie") {
+                    myCard.href = "movies.php?id=" + myCard.id;
+                }
+                else if (mediaType === "tv") {
+                    myCard.href = "series.php?id=" + myCard.id;
+                }
+                else if (mediaType === "trending/movie") {
+                    myCard.href = "movies.php?id=" + myCard.id;
+                }
+                else if (mediaType === "person") {
+                    myCard.href = "actors.php?id=" + myCard.id;
+                }
+                myCard.innerHTML += `
                       
                       
                       
                       ${!data.results[key].poster_path
-                        ? !data.results[key].profile_path
-                            ? `<div><img class="img-fluid card-img-top" src=${notFindImg} alt="not found image"></div>`
-                            : `<div><img class="img-fluid card-img-top" src=${srcImg + data.results[key].profile_path} alt="not found image"></div>`
-                        : `<div><img class="img-fluid card-img-top" src=${srcImg + data.results[key].poster_path} alt="not found image"></div>`}
+                    ? !data.results[key].profile_path
+                        ? `<div><img class="img-fluid card-img-top" src=${notFindImg} alt="not found image"></div>`
+                        : `<div><img class="img-fluid card-img-top" src=${srcImg + data.results[key].profile_path} alt="not found image"></div>`
+                    : `<div><img class="img-fluid card-img-top" src=${srcImg + data.results[key].poster_path} alt="not found image"></div>`}
                       
                       
                       
-                      ${!data.results[key].overview &&
-                        data.results[key].media_type === "person"
-                        ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularity :' +
-                            data.results[key].popularity.toFixed(0) +
-                            "</span></div>"
-                        : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
-                            data.results[key].vote_average.toFixed(1) +
-                            "</span></span></div>"}
+                      ${!data.results[key].overview
+                    ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularity :' +
+                        data.results[key].popularity.toFixed(0) +
+                        "</span></div>"
+                    : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
+                        data.results[key].vote_average.toFixed(1) +
+                        "</span></span></div>"}
                   
                   `;
-                    // appel
-                    myDiv2.append(myCard);
-                }
+                // appel
+                myDiv2.append(myCard);
+                // }
             }
             // appel
             //  une fois remplie on appel enfin notre carte d'interaction
@@ -75,6 +78,9 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
             }
             else if (mediaType === "trending/movie") {
                 cardShowMore.href = "movies.php?search=" + cardShowMore.id;
+            }
+            else if (mediaType === "person") {
+                cardShowMore.href = "actors.php?search=" + cardShowMore.id;
             }
             myDiv2.append(cardShowMore);
             myContainer.append(title, myDiv2);

@@ -1,7 +1,8 @@
+import search from "./search.js";
 import { getMedia } from "./getMedia.js";
 import { BtnBackMenu } from "./BtnBackMenu.js";
 //fonction du header
-// search("/search/movie");
+search("multi", 1);
 let mediaType;
 let status;
 let count = 10;

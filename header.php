@@ -22,6 +22,9 @@
                     <li class="nav-item">
                         <a href="./series.php" class="nav-link">Séries</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="./actors.php" class="nav-link">Acteurs</a>
+                    </li>
                 </ul>
                 <div class="col-md-6 my-2">
                     <form id="searchForm">

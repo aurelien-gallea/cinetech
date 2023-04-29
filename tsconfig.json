@@ -19,6 +19,8 @@
         "assets/ts/getOneMedia.ts",
         "assets/ts/BtnBackMenu.ts",
         "assets/ts/getVideo.ts",
+        "assets/ts/actors.ts",
+        "assets/ts/getCredits.ts",
         
         
 
