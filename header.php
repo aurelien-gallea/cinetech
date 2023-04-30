@@ -1,5 +1,5 @@
-<header>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top">
+<header >
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top" style="border-bottom: 1px solid orange;">
         <div class="container">
             <div class="navbar-brand">
                 <a href="./" class="nav-link fs-3">
@@ -27,6 +27,7 @@
                     </li>
                 </ul>
                 <div class="col-md-6 my-2">
+                    <?php if (!isset($_GET["id"])) { ?>
                     <form id="searchForm">
                         <div class="input-group  ms-md-5">
                             
@@ -34,6 +35,7 @@
                             <button id="button" class="btn btn-light orange border-0">Rechercher</button>
                         </div>
                     </form>
+                    <?php } ?>
                 </div>
             </div>
         </div>
