@@ -37,7 +37,7 @@ export const getSimilar = (mediaType: string, myId: string, nbOfPage: number,  m
           
           myCard.classList.add("card", "mb-3", "justify-content-between", "bg-black", "nav-link");
           myCard.style.minWidth = "200px";
-            myCard.style.maxWidth = "300px";
+            myCard.style.maxWidth = "200px";
         myCard.id = data.results[key].id;
 
         if (mediaType === "movie") {

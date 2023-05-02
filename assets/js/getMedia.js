@@ -14,7 +14,7 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
     // on créé une carte qui sera ajouté à la fin des autres pour créer un interaction supplémentaire
     cardShowMore.classList.add("card", "mb-3", "nav-link", "justify-content-enter", "align-items-center", "bg-black");
     cardShowMore.style.minWidth = "200px";
-    cardShowMore.style.maxWidth = "300px";
+    cardShowMore.style.maxWidth = "200px";
     cardShowMore.innerHTML += '<div><img class="img-fluid" src="./assets/images/show-more.jpg"></div>';
     // on cache la carte si on en a pas besoin
     hiddenCardShowMore ? cardShowMore.style.display = "none" : "";

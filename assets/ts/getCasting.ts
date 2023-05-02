@@ -37,7 +37,7 @@ export const getCasting = (mediaType: string, myId: string,  myTitle : string): 
           
           myCardCast.classList.add("card", "mb-3", "justify-content-between", "bg-black", "nav-link");
           myCardCast.style.minWidth = "200px";
-            myCardCast.style.maxWidth = "300px";
+            myCardCast.style.maxWidth = "200px";
         myCardCast.id = data.cast[key].id;
 
         

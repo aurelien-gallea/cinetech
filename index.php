@@ -10,7 +10,7 @@
     <title>Accueil | Cinetech</title>
 </head>
 
-<body class="text-bg-dark scroller wk-scroller" >
+<body class="text-bg-dark" >
 
     <?php require_once("./header.php"); ?>
     
