@@ -48,7 +48,7 @@ export const getCasting = (mediaType: string, myId: string,  myTitle : string): 
                             srcImg + data.cast[key].profile_path
                           } alt="${data.cast[key].name}"></div>`
         
-        myCardCast.innerHTML += `<div class="card-footer bg-light text-black">${data.cast[key].name}</div>`;
+        myCardCast.innerHTML += `<div class="card-footer text-truncate text-bg-black">${data.cast[key].name}</div>`;
 
         // myCardCast.innerHTML +=      '<div class="card-footer "><span class="fw-bold fs-6 text-end text-black">Popularité :'  +
         // data.cast[key].popularity.toFixed(0) +

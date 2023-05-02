@@ -30,7 +30,7 @@ export const getCasting = (mediaType, myId, myTitle) => {
                 myCardCast.href = "actors.php?id=" + myCardCast.id;
                 !data.cast[key].profile_path ? myCardCast.innerHTML += `<div><img class="img-fluid card-img-top" src=${notFindImg} alt="not found image"></div>`
                     : myCardCast.innerHTML += `<div><img class="img-fluid card-img-top" src=${srcImg + data.cast[key].profile_path} alt="${data.cast[key].name}"></div>`;
-                myCardCast.innerHTML += `<div class="card-footer bg-light text-black">${data.cast[key].name}</div>`;
+                myCardCast.innerHTML += `<div class="card-footer text-truncate text-bg-black">${data.cast[key].name}</div>`;
                 // myCardCast.innerHTML +=      '<div class="card-footer "><span class="fw-bold fs-6 text-end text-black">Popularité :'  +
                 // data.cast[key].popularity.toFixed(0) +
                 // "</span></div>";

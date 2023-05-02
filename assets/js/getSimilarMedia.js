@@ -49,10 +49,10 @@ export const getSimilar = (mediaType, myId, nbOfPage, myTitle) => {
                   
                   ${data.results[key].overview &&
                             data.results[key].media_type === "movie"
-                            ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularité : ' +
+                            ? '<div class="card-footer bg-black"><span class="fw-bold fs-6 text-end ">Popularité : ' +
                                 data.results[key].popularity.toFixed(0) +
                                 "</span></div>"
-                            : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
+                            : '<div class="card-footer bg-black"><span class="fw-bold fs-6 text-end "> Score : <span>' +
                                 data.results[key].vote_average.toFixed(1) +
                                 "</span></span></div>"}
               

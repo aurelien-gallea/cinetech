@@ -28,10 +28,10 @@ export const getOneMedia = (mediaType, idMedia) => {
                       
                       
                       ${!data.overview
-            ? '<div class="card-footer bg-light"><span class="badge fs-4 text-end text-black">Popularité : ' +
+            ? '<div class="card-footer bg-black"><span class="badge fs-4 text-end ">Popularité : ' +
                 data.popularity.toFixed(0) +
                 "</span></div>"
-            : '<div class="card-footer bg-light"><span class="badge fs-4 text-end text-black"> Score : <span>' +
+            : '<div class="card-footer bg-black"><span class="badge fs-4 text-end "> Score : <span>' +
                 data.vote_average.toFixed(1) +
                 "</span></span></div>"}
                   
