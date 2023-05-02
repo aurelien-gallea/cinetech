@@ -40,7 +40,7 @@ const findSomething = (mediaType: string, page: number) => {
   
             myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");
             myCard.style.minWidth = "200px";
-            myCard.style.maxWidth = "300px";
+            myCard.style.maxWidth = "200px";
             myCard.id = data.id;
             let title: string = "";
             if (newMediaType === "movie") {
