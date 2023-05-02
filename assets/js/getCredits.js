@@ -26,7 +26,7 @@ export const getCredits = (myId, credits, nbOfPage, myTitle) => {
                     const myCard = document.createElement("a");
                     myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");
                     myCard.style.minWidth = "200px";
-                    myCard.style.maxWidth = "300px";
+                    myCard.style.maxWidth = "200px";
                     myCard.id = data.cast[key].id;
                     if (credits === "movie_credits") {
                         myCard.href = "movies.php?id=" + myCard.id;

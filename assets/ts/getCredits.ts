@@ -38,7 +38,7 @@ export const getCredits = ( myId: string, credits : string, nbOfPage: number,  m
           
           myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");
           myCard.style.minWidth = "200px";
-            myCard.style.maxWidth = "300px";
+            myCard.style.maxWidth = "200px";
         myCard.id = data.cast[key].id;
 
         if (credits === "movie_credits") {
