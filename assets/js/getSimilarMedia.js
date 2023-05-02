@@ -25,7 +25,7 @@ export const getSimilar = (mediaType, myId, nbOfPage, myTitle) => {
                     if (data.results[key].vote_count >= 10) {
                         // création d'une carte pour chaque contenu
                         const myCard = document.createElement("a");
-                        myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");
+                        myCard.classList.add("card", "mb-3", "justify-content-between", "bg-black", "nav-link");
                         myCard.style.minWidth = "200px";
                         myCard.style.maxWidth = "300px";
                         myCard.id = data.results[key].id;

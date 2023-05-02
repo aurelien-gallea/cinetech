@@ -8,7 +8,7 @@
 *::-webkit-scrollbar {
     background: black;
     width: 20px;
-    height: 20px;
+    height: 25px;
     border-radius: 50rem;
 }
 
@@ -26,4 +26,8 @@
 
 .orange:hover {
     color: black;
+}
+
+.card:hover {
+    border: 3px solid orange;
 }

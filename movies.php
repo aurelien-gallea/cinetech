@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/defaults.css">
     <link rel="stylesheet" href="./assets/css/scrollbar.css">
     <title>Films | Cinetech</title>
 </head>
 
-<body class="text-bg-dark scroller wk-scroller" >
+<body class="text-bg-dark" >
 
     <?php require_once("./header.php");
     if (!empty($_GET["id"])) { ?>
         <h1 id="<?= $_GET["id"] ?>" class="param my-5 text-center"></h1>
         <div id="btnContainer" class="container d-flex justify-content-between my-4 flex-wrap gap-3"></div>
-
         <div id="myContainer" class="container d-flex flex-column align-items-center gap-3">
         </div>
         

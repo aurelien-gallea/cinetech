@@ -6,6 +6,7 @@ const searchBar = document.querySelector("#searchBar") as HTMLInputElement;
 const button: HTMLInputElement = document.querySelector(
   "#button"
 ) as HTMLInputElement;
+const title = document.querySelector("h1") as HTMLHeadingElement;
 const myContainer = document.querySelector("#myContainer") as HTMLDivElement;
 const srcImg: string = "https://image.tmdb.org/t/p/w300";
 const notFindImg: string = "./assets/images/not-find.jpg";
@@ -15,7 +16,6 @@ let mediaType: "tv" | "movie" | "person" | "multi";
 const findSomething = (mediaType: string, page: number) => {
   let range: number; // avoir
   const myContainer = document.querySelector("#myContainer") as HTMLDivElement;
-  const title = document.querySelector(".param") as HTMLHeadingElement;
   const notFindImg: string = "./assets/images/not-find.jpg";
   const srcImg: string = "https://image.tmdb.org/t/p/original";
   fetch(
@@ -82,7 +82,7 @@ const findSomething = (mediaType: string, page: number) => {
                       ${
                         !data.overview &&
                         data.media_type !== "person"
-                          ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularity :' +
+                          ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularité :' +
                             data.popularity.toFixed(0) +
                             "</span></div>"
                           : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
@@ -134,6 +134,7 @@ button.addEventListener("click", () => {
         if(searchBar.value.length >= 2) {
           myContainer.innerHTML = "";
           findSomething("multi", 1);
+          title.textContent = "Résultats pour : " + searchBar.value;
           
         } else {
           searchBar.classList.add("bg-black");

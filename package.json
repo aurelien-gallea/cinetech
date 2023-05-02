@@ -19,5 +19,8 @@
   "homepage": "https://github.com/aurelien-gallea/cinetech#readme",
   "devDependencies": {
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3"
   }
 }

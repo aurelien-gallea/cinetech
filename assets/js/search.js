@@ -3,6 +3,7 @@ import apiKey from "./apiKey.js";
 const form = document.querySelector("#searchForm");
 const searchBar = document.querySelector("#searchBar");
 const button = document.querySelector("#button");
+const title = document.querySelector("h1");
 const myContainer = document.querySelector("#myContainer");
 const srcImg = "https://image.tmdb.org/t/p/w300";
 const notFindImg = "./assets/images/not-find.jpg";
@@ -10,7 +11,6 @@ let mediaType;
 const findSomething = (mediaType, page) => {
     let range; // avoir
     const myContainer = document.querySelector("#myContainer");
-    const title = document.querySelector(".param");
     const notFindImg = "./assets/images/not-find.jpg";
     const srcImg = "https://image.tmdb.org/t/p/original";
     fetch(`https://api.themoviedb.org/3/search/${mediaType}?api_key=${apiKey}&query=${searchBar.value}`)
@@ -65,7 +65,7 @@ const findSomething = (mediaType, page) => {
                       
                       ${!data.overview &&
                     data.media_type !== "person"
-                    ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularity :' +
+                    ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularité :' +
                         data.popularity.toFixed(0) +
                         "</span></div>"
                     : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
@@ -105,6 +105,7 @@ button.addEventListener("click", () => {
     if (searchBar.value.length >= 2) {
         myContainer.innerHTML = "";
         findSomething("multi", 1);
+        title.textContent = "Résultats pour : " + searchBar.value;
     }
     else {
         searchBar.classList.add("bg-black");

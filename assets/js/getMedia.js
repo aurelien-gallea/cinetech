@@ -12,7 +12,7 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
     myDiv2.classList.add("d-flex", "w-100", "overflow-auto", "gap-2", "rounded");
     const cardShowMore = document.createElement("a");
     // on créé une carte qui sera ajouté à la fin des autres pour créer un interaction supplémentaire
-    cardShowMore.classList.add("card", "nav-link", "justify-content-enter", "align-items-center", "bg-black");
+    cardShowMore.classList.add("card", "mb-3", "nav-link", "justify-content-enter", "align-items-center", "bg-black");
     cardShowMore.style.minWidth = "200px";
     cardShowMore.style.maxWidth = "300px";
     cardShowMore.innerHTML += '<div><img class="img-fluid" src="./assets/images/show-more.jpg"></div>';
@@ -26,7 +26,7 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
             for (const key in data.results) {
                 // if (data.results[key].vote_count >= 10) {
                 const myCard = document.createElement("a");
-                myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");
+                myCard.classList.add("card", "mb-3", "justify-content-between", "bg-black", "nav-link");
                 myCard.style.minWidth = "200px";
                 myCard.style.maxWidth = "300px";
                 myCard.id = data.results[key].id;
@@ -55,7 +55,7 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
                       
                       
                       ${!data.results[key].overview
-                    ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularity :' +
+                    ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularité :' +
                         data.results[key].popularity.toFixed(0) +
                         "</span></div>"
                     : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
