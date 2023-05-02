@@ -13,9 +13,9 @@ export const getCasting = (mediaType, myId, myTitle) => {
     fetch(`https://api.themoviedb.org/3/${mediaType}/${myId}/credits?api_key=${apiKey}`)
         .then(response => response.json())
         .then((data) => {
-        if (data.total_results === 0) {
+        if (data.cast.length === 0) {
             alert.classList.add("alert", "alert-warning", "text-center", "my-5");
-            alert.innerHTML = '<p>Aucun contenu similaire trouvé !</p>';
+            alert.innerHTML = 'Aucun casting trouvé !';
             myDiv3.classList.remove("w-100");
             myDiv3.append(alert);
         }

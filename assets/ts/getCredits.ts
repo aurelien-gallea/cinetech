@@ -25,7 +25,7 @@ export const getCredits = ( myId: string, credits : string, nbOfPage: number,  m
         
           if(data.cast.length === 0) {
             alert.classList.add("alert", "alert-warning", "text-center", "my-5");
-            alert.innerHTML = '<p>Aucun contenu similaire trouvé !</p>';
+            alert.innerHTML = 'Aucun contenu similaire trouvé !';
             myDiv2.classList.remove("w-100");
             myDiv2.append(alert);
           } else {

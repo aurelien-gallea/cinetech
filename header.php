@@ -14,16 +14,16 @@
             <div class="collapse navbar-collapse" id="monMenuDeroulant">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="./" class="nav-link active">Accueil</a>
+                        <a href="./" class="nav-link <?= basename($_SERVER['PHP_SELF']) === "index.php" ? "active" : "" ?>">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./movies.php" class="nav-link">Films</a>
+                        <a href="./movies.php" class="nav-link <?= (substr($_SERVER['REQUEST_URI'], -10) === 'movies.php') ? "active" : "" ?>">Films</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./series.php" class="nav-link">Séries</a>
+                        <a href="./series.php" class="nav-link <?= (substr($_SERVER['REQUEST_URI'], -10) === 'series.php') ? "active" : "" ?>">Séries</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./actors.php" class="nav-link">Acteurs</a>
+                        <a href="./actors.php" class="nav-link <?= (substr($_SERVER['REQUEST_URI'], -10) === 'actors.php') ? "active" : "" ?>">Acteurs</a>
                     </li>
                 </ul>
                 <div class="col-md-6 my-2">
