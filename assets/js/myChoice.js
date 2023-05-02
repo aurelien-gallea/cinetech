@@ -24,7 +24,7 @@ if (window.location.href.includes("actors")) {
 }
 document.body.querySelector("#btnContainer")?.prepend(BtnBackMenu(direction), BtnBack());
 // on met un délais d'execution pour être sûr de tout avoir dans le bon ordre
-setTimeout(() => getOneMedia(mediaType, getId()), 50);
+getOneMedia(mediaType, getId());
 // l'affichages des suggestions + liens => exclue si c'est un acteur
 if (!window.location.href.includes("actors")) {
     setTimeout(() => getCasting(mediaType, getId(), "Casting : "), 200);
