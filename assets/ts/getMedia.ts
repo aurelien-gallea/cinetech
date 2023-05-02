@@ -31,7 +31,7 @@ export const getMedia = (mediaType: string, status: string, nbOfPages: number, m
       .then((response) => response.json())
   
       .then((data) => {
-        console.log(data);
+        
         for (const key in data.results) {
           // if (data.results[key].vote_count >= 10) {
             const myCard = document.createElement("a") as HTMLAnchorElement;

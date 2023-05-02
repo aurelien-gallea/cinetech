@@ -22,7 +22,6 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
         fetch(`https://api.themoviedb.org/3/${mediaType}/${status}?api_key=${apiKey}&language=fr-FR&page=${i}`)
             .then((response) => response.json())
             .then((data) => {
-            console.log(data);
             for (const key in data.results) {
                 // if (data.results[key].vote_count >= 10) {
                 const myCard = document.createElement("a");

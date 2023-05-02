@@ -1,5 +1,5 @@
 import apiKey from "./apiKey.js";
-export const getOneMedia = (mediaType, idMedia, casting) => {
+export const getOneMedia = (mediaType, idMedia) => {
     const myContainer = document.querySelector("#myContainer");
     const title = document.querySelector(".param");
     const notFindImg = "./assets/images/not-find.jpg";
@@ -8,7 +8,6 @@ export const getOneMedia = (mediaType, idMedia, casting) => {
     fetch(`https://api.themoviedb.org/3/${mediaType}/${idMedia}?api_key=${apiKey}&language=fr-FR`)
         .then((response) => response.json())
         .then((data) => {
-        console.log(data);
         mediaType === "movie" ? title.textContent = data.title : title.textContent = data.name;
         const myDiv2 = document.createElement("div");
         const myCard = document.createElement("div");
@@ -79,10 +78,6 @@ export const getOneMedia = (mediaType, idMedia, casting) => {
             const numberToMillion = (myNumber) => myNumber >= 1000000 || myNumber <= 1000000 && myNumber < 0 ? (myNumber / 1000000).toFixed(2) + " millions" : myNumber;
             data.budget === 0 ? null : resume.innerHTML += `<div><b>Budget : </b>${numberToMillion(data.budget)} $</div>`;
             data.revenue === 0 || data.budget === 0 ? null : resume.innerHTML += `<div><b>Profit : </b>${profit === 0 ? "inconnu" : numberToMillion(profit) + " $"} </div>`;
-        }
-        if (mediaType !== "person") {
-            // on rajoute le casting
-            casting.length > 0 ? resume.innerHTML += `<div class="mt-3"><b>Acteurs principaux : </b>${casting.join(', ')}</div>` : null;
         }
         myDiv2.classList.add("d-flex", "gap-3", "flex-column", "flex-md-row");
         resume.classList.add("col-lg-8", "border", "border-secondary", "rounded", "p-3");

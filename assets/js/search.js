@@ -16,18 +16,12 @@ const findSomething = (mediaType, page) => {
     fetch(`https://api.themoviedb.org/3/search/${mediaType}?api_key=${apiKey}&query=${searchBar.value}`)
         .then((response) => response.json())
         .then((data) => {
-        range = data.total_pages; // a voir
-        console.log(range); // a voir
-        console.log(data);
         for (const key in data.results) {
             let newMediaType = data.results[key].media_type;
             let idMedia = data.results[key].id;
-            console.log("id :" + idMedia);
             fetch(`https://api.themoviedb.org/3/${newMediaType}/${idMedia}?api_key=${apiKey}&query=${searchBar.value}&language=fr-FR&page=${page}`)
                 .then((response) => response.json())
                 .then((data) => {
-                console.log(data);
-                console.log(data.name);
                 const myDiv2 = document.createElement("div");
                 const myCard = document.createElement("a");
                 myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");

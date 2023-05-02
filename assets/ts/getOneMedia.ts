@@ -1,6 +1,6 @@
 import apiKey from "./apiKey.js";
 
-export const getOneMedia = (mediaType: string, idMedia: string, casting : any[]): void => {
+export const getOneMedia = (mediaType: string, idMedia: string): void => {
     
     const myContainer = document.querySelector("#myContainer") as HTMLDivElement;
     const title = document.querySelector(".param") as HTMLHeadingElement;
@@ -18,7 +18,7 @@ export const getOneMedia = (mediaType: string, idMedia: string, casting : any[])
       .then((response) => response.json())
   
       .then((data) => {
-        console.log(data);
+        
         mediaType === "movie" ? title.textContent= data.title : title.textContent = data.name;
         const myDiv2 = document.createElement("div");
   
@@ -111,11 +111,7 @@ export const getOneMedia = (mediaType: string, idMedia: string, casting : any[])
           data.revenue === 0 || data.budget === 0 ? null : resume.innerHTML += `<div><b>Profit : </b>${profit === 0 ? "inconnu" : numberToMillion(profit) + " $"} </div>`;
           
         }
-        if (mediaType !== "person") {
-
-          // on rajoute le casting
-          casting.length > 0 ? resume.innerHTML += `<div class="mt-3"><b>Acteurs principaux : </b>${casting.join(', ')}</div>`: null ;
-        }
+        
         
         myDiv2.classList.add("d-flex","gap-3","flex-column","flex-md-row");
         resume.classList.add("col-lg-8", "border", "border-secondary", "rounded", "p-3" );

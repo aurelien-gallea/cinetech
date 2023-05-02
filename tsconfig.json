@@ -11,9 +11,6 @@
         "assets/ts/movies.ts",
         "assets/ts/series.ts",
         "assets/ts/myChoice.ts",
-        "assets/ts/serieChoice.ts",
-        "assets/ts/createLinks.ts",
-        "assets/ts/createCardShowMore.ts",
         "assets/ts/getMedia.ts",
         "assets/ts/getSimilarMedia.ts",
         "assets/ts/getOneMedia.ts",
@@ -21,6 +18,7 @@
         "assets/ts/getVideo.ts",
         "assets/ts/actors.ts",
         "assets/ts/getCredits.ts",
+        "assets/ts/getCasting.ts",
         
         
 
