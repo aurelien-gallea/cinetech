@@ -15,7 +15,7 @@
 *::-webkit-scrollbar-thumb {
     background: orange;
     border: 5px solid black;
-    min-width: 20px;
+    min-width: 30px;
     border-radius: 50rem;
 }
 
