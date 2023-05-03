@@ -1,5 +1,5 @@
 <header >
-    <nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top" style="border-bottom: 1px solid orange;">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top" style="border-bottom: 1px solid orange;">
         <div class="container">
             <div class="navbar-brand">
                 <a href="./" class="nav-link fs-3">
@@ -25,14 +25,17 @@
                     <li class="nav-item">
                         <a href="./actors.php" class="nav-link <?= (substr($_SERVER['REQUEST_URI'], -10) === 'actors.php') ? "active" : "" ?>">Acteurs</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="./login.php" class="nav-link <?= (substr($_SERVER['REQUEST_URI'], -9) === 'login.php') ? "active" : "" ?>">Connexion/Inscription</a>
+                    </li>
                 </ul>
                 <div class="col-md-6 my-2">
                     <?php if (!isset($_GET["id"])) { ?>
-                    <form id="searchForm">
-                        <div class="input-group  ms-md-5">
+                    <form id="searchForm" class="rounded-pill">
+                        <div class="input-group maxW-input ms-md-5">
                             
                             <input id="searchBar" class="form-control" type="search" placeholder="Rechercher film/série/acteur...">
-                            <button id="button" class="btn btn-light orange border-0">Rechercher</button>
+                            <button id="button" class="btn btn-light orange border-0"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
                     <?php } ?>

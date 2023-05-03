@@ -68,3 +68,13 @@ $font-sizes: (
 body {
     font-family: "Inter","Roboto", sans-serif;
 }
+
+.maxW-input {
+    max-width: 300px;
+    border-radius: 50rem;
+    overflow: hidden;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
