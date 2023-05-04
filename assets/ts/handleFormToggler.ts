@@ -1,8 +1,8 @@
 // le btn qui fait apparaître la bonne div
 const btnToggler = document.querySelectorAll(".btnToggler");
 // les 2 formulaires
-const signInForm = document.querySelector("#signIn") as HTMLTableSectionElement;
-const signUpForm = document.querySelector("#signUp") as HTMLTableSectionElement;
+const signInForm = document.querySelector("#signIn") as HTMLFormElement;
+const signUpForm = document.querySelector("#signUp") as HTMLFormElement;
 
 // formulaire d'inscription ------------------
 const loginIcon = document.querySelector("#loginIcon") as HTMLElement;
@@ -92,8 +92,21 @@ signUpForm.addEventListener("keyup", (e) => {
   } else {
     subscribe.style.cursor = "pointer";
     subscribe.classList.remove("bg-white");
-    alert("cette fonctionnalité est en cours de création.")
   }
 });
+
+// a enlever une fois le back codé ----------------------------------------------------------------------------------------
+const fonctionAenleverUneFoisLeBackCode = (form : HTMLFormElement) => {
+  
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("cette fonctionnalité est en cours de création.");
+  })
+} 
+
+fonctionAenleverUneFoisLeBackCode(signUpForm);
+fonctionAenleverUneFoisLeBackCode(signInForm);
+// fin de la suppression ------------------------------------------------------------------------------------------------------
+
 
 // -------------------------- connexion -------------------------------

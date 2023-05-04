@@ -81,7 +81,16 @@ signUpForm.addEventListener("keyup", (e) => {
     else {
         subscribe.style.cursor = "pointer";
         subscribe.classList.remove("bg-white");
-        alert("cette fonctionnalité est en cours de création.");
     }
 });
+// a enlever une fois le back codé ----------------------------------------------------------------------------------------
+const fonctionAenleverUneFoisLeBackCode = (form) => {
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("cette fonctionnalité est en cours de création.");
+    });
+};
+fonctionAenleverUneFoisLeBackCode(signUpForm);
+fonctionAenleverUneFoisLeBackCode(signInForm);
+// fin de la suppression ------------------------------------------------------------------------------------------------------
 // -------------------------- connexion -------------------------------
