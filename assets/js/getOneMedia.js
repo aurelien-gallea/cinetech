@@ -13,7 +13,7 @@ export const getOneMedia = (mediaType, idMedia) => {
         const myCard = document.createElement("div");
         const resume = document.createElement("div");
         const getDateToFrench = (date) => new Date(date).toLocaleDateString("fr-FR");
-        myCard.classList.add("card", "border-0", "bg-dark");
+        myCard.classList.add("card", "border-0", "bg-info");
         myCard.style.minWidth = "200px";
         myCard.innerHTML = `
                       

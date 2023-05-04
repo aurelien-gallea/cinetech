@@ -27,9 +27,9 @@ document.body.querySelector("#btnContainer")?.prepend(BtnBackMenu(direction), Bt
 getOneMedia(mediaType, getId());
 // l'affichages des suggestions + liens => exclue si c'est un acteur
 if (!window.location.href.includes("actors")) {
-    setTimeout(() => getCasting(mediaType, getId(), "Casting : "), 200);
-    setTimeout(() => getVideo(mediaType, getId()), 350);
-    setTimeout(() => getSimilar(mediaType, getId(), 3, "Vous pourriez aimer"), 500);
+    setTimeout(() => getCasting(mediaType, getId(), "Casting : "), 250);
+    setTimeout(() => getVideo(mediaType, getId()), 400);
+    setTimeout(() => getSimilar(mediaType, getId(), 3, "Vous pourriez aimer"), 550);
 }
 else {
     setTimeout(() => getCredits(getId(), "movie_credits", 1, "a joué dans ces films : "), 400);
