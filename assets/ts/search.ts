@@ -78,10 +78,10 @@ const findSomething = (mediaType: string, page: number) => {
                       ${
                         !data.overview &&
                         data.media_type !== "person"
-                          ? '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black">Popularité :' +
+                          ? '<div class="card-footer text-bg-black"><span class="fw-bold fs-6 text-end">Popularité :' +
                             data.popularity.toFixed(0) +
                             "</span></div>"
-                          : '<div class="card-footer bg-light"><span class="fw-bold fs-6 text-end text-black"> Score : <span>' +
+                          : '<div class="card-footer text-bg-black"><span class="fw-bold fs-6 text-end"> Score : <span>' +
                             data.vote_average.toFixed(1) +
                             "</span></span></div>"
                       }

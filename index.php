@@ -7,19 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/defaults.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="./assets/images/favicon.ico" rel="icon" type="image/x-icon" />
     <title>Accueil | Cinetech</title>
 </head>
 
-<body class="text-bg-dark" >
+<body class="text-bg-info" >
 
     <?php require_once("./header.php"); ?>
-    
-        <h1 class="text-center my-5">Bienvenue sur CineTech !</h1>
+    <main class="mainContent flex-grow-1">
+        <h1 class="text-center my-5">Bienvenue sur Cine<span class="text-primary">Tech</span></h1>
         <div id="btnContainer" class="container d-flex justify-content-center my-4 flex-wrap gap-3"></div>
 
         <div id="myContainer" class="d-flex justify-content-center flex-wrap gap-3 mx-3"></div>
-        <footer class="mt-5"></footer>
+    </main>
+        <?php require_once("./footer.php"); ?>
         <script type="module" src="./assets/js/app.js"></script>
   
 

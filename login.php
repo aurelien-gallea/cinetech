@@ -59,6 +59,7 @@ if(!empty($_POST['login1']) && !empty($_POST['pass1']) && !empty($_POST['pass2']
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/defaults.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="./assets/images/favicon.ico" rel="icon" type="image/x-icon" />
     <title>Connexion/inscription | Cinetech</title>
 </head>
 
@@ -67,7 +68,7 @@ if(!empty($_POST['login1']) && !empty($_POST['pass1']) && !empty($_POST['pass2']
     <?php require_once("./header.php"); ?>
 
 
-
+    <main class="mainContent flex-grow-1">
     <section id="signIn">
 
         <h1 class="text-center my-5">Connexion</h1>
@@ -155,7 +156,8 @@ if(!empty($_POST['login1']) && !empty($_POST['pass1']) && !empty($_POST['pass2']
         echo '<p class="alert error">' . htmlspecialchars($_GET['message']) . '</p>';
     }
     ?>
-    <footer class="mt-5"></footer>
+    </main>
+    <?php require_once("./footer.php"); ?>
 
 
 

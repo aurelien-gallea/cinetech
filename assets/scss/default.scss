@@ -7,7 +7,7 @@
 // modifier les couleurs de bases + dérivés
 $blue:    #C84B31; // primary  <---- cette couleur a été modifié pour profiter de tous les comportements (notamment les box-shadow sur les form-control par expl...)
 // $red:     #dc3545 ; // danger
-// $yellow:  #0c0504 ; // warning  <---- idem
+$yellow:  #ECDBBA ; // warning  <---- idem
 // $green:   #198754 ; // success
 $cyan:    #191919 ; // info
 
@@ -68,20 +68,6 @@ $theme-colors: map-merge($theme-colors, $custom-colors );
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss" ;
 
-body {
-    font-family: "Inter","Roboto", sans-serif;
-}
-
-.maxW-input {
-    max-width: 300px;
-    border-radius: 50rem;
-    overflow: hidden;
-}
-
-.pointer:hover {
-    cursor: pointer;
-}
-
 * {
     scrollbar-width: 20px;
    scrollbar-color: $color1 black;
@@ -92,7 +78,7 @@ body {
     background: black;
     width: 20px;
     height: 20px;
-    border-radius: 50rem;
+    // border-radius: 50rem;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -101,6 +87,33 @@ body {
     min-width: 30px;
     border-radius: 50rem;
 }
+
+
+html,body {
+    height: 100%;
+}
+
+body {
+    font-family: "Inter","Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContent {
+    margin-top: 71px;
+    
+}
+.maxW-input {
+    max-width: 300px;
+    border-radius: 50rem;
+    overflow: hidden;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+
 
 .orange {
     background-color: $color1;

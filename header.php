@@ -44,4 +44,3 @@
         </div>
     </nav>
 </header>
-<div style="height:71px"></div>
