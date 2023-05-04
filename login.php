@@ -1,5 +1,54 @@
 <?php
-session_start() ?>
+session_start();
+
+require_once('classes/User.php');
+    require_once('classes/Security.php');
+    require_once('classes/Verify.php');
+
+    // inscription -------------------------------------------
+if(!empty($_POST['login1']) && !empty($_POST['pass1']) && !empty($_POST['pass2']) &&!empty($_POST['mail'])) {
+    if ($_POST['pass1'] == $_POST['pass2']) {
+
+        // protection des variables
+        $login   = htmlspecialchars($_POST['login']);
+        $password = htmlspecialchars($_POST['password']);
+        $email    = htmlspecialchars($_POST['email']);
+
+        // doublon login
+        if(Verify::loginAlreadyExist($login)) {
+            header('location:inscription.php?error=1&message=login déjà existant');
+            exit();
+        }
+
+        // verifications du mail
+        if(!Verify::verifySyntax($email)) {
+            header('location:inscription.php?error=1&message=merci de rentrer un email valide !');
+            exit();
+        }
+        // doublon mail
+        if(Verify::emailAlreadyExist($email)) {
+            header('location:inscription.php?error=1&message= mail déjà utilisé');
+            exit();
+        }
+        
+        // on chiffre le mdp
+        $password = Security::hash($password);           
+        // on ajoute l'utilisateur
+        $user = new User($login, $password, $email);
+        $user->register();
+        $user->baseRole();
+    
+        // redirection 
+        header('location:index.php');
+        exit();
+       
+    } else {
+        header('location:login.php?error=1&message=merci de rentrer des mots de passe indentiques');
+        exit();
+    }
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,11 +78,11 @@ session_start() ?>
             <form class="d-flex flex-column justify-content-center gap-4 mt-5" action="login.php" method="post">
                 <div class="input-group gap-2">
                     <label class="input-group-text rounded-circle" for="login"><i class="fa-solid fa-user"></i></label>
-                    <input class="form-control rounded-pill" type="text" id="login" placeholder="Identifiant">
+                    <input class="form-control rounded-pill" required type="text" id="login" placeholder="Identifiant">
                 </div>
                 <div class="input-group rounded-pill gap-2">
                     <label class="input-group-text rounded-circle" for="pass"><i class="fa-solid fa-lock"></i></label>
-                    <input class="form-control rounded-pill" type="password" id="pass" placeholder="Mot de passe">
+                    <input class="form-control rounded-pill" required type="password" id="pass" placeholder="Mot de passe">
                 </div>
 
                 <div>
@@ -55,25 +104,41 @@ session_start() ?>
         <div id="myContainer" class="d-flex justify-content-center flex-wrap gap-3 mx-3">
 
 
-            <form class="d-flex flex-column justify-content-center gap-4 mt-5" action="login.php" method="post">
+            <form class="d-flex flex-column justify-content-center gap-3 mt-5" action="login.php" method="post">
                 <div class="input-group gap-2">
-                    <label class="input-group-text rounded-circle" for="login1"><i class="fa-solid fa-user"></i></label>
-                    <input class="form-control rounded-pill" type="text" id="login1" placeholder="Identifiant">
+                    <label class="input-group-text rounded-circle" for="login1"><i id="loginIcon" class="fa-solid fa-user"></i></label>
+                    <input class="form-control rounded-pill" required minlength="3" type="text" id="login1" placeholder="Identifiant">
+                </div>
+                <div class="mx-2">
+
+                    <small id="errorLogin1"><i class="fa-solid fa-check"></i> 3 caractères minimum </small>
+                </div>
+                <div class="input-group gap-2">
+                    <label class="input-group-text rounded-circle" for="mail"><i id="mailIcon" class="fa-solid fa-envelope"></i></label>
+                    <input class="form-control rounded-pill" required  type="email" id="mail" placeholder="Email">
+                </div>
+                <div class="mx-2">
+
+                    <small id="errorMail"><i class="fa-solid fa-check"></i> adresse email valide </small>
                 </div>
                 <div class="input-group rounded-pill gap-2">
-                    <label class="input-group-text rounded-circle" for="pass1"><i class="fa-solid fa-lock"></i></label>
-                    <input class="form-control rounded-pill" type="password" id="pass1" placeholder="Mot de passe">
+                    <label class="input-group-text rounded-circle" for="pass1"><i id="passIcon1" class="fa-solid fa-lock"></i></label>
+                    <input class="form-control rounded-pill" required minlength="8" type="password" id="pass1" placeholder="Mot de passe">
                 </div>
-                <div>
-                    <small>identifiant : 3 caractères minimum </small>
-                    <div>
-                        <p><small>MDP : 8 caracères minimum</small></p>
-                        <p><small>1 Majuscules minimum et 1 caracères spécial</small></p>
+                <div class="input-group rounded-pill gap-2">
+                    <label class="input-group-text rounded-circle" for="pass2"><i id="passIcon2" class="fa-solid fa-lock"></i></label>
+                    <input class="form-control rounded-pill" required minlength="8" type="password" id="pass2" placeholder="Confirmation MDP">
+                </div>
+                <div class="d-flex flex-column mx-2">
 
-                    </div>
+                    <small id="errorPass1"><i class="fa-solid fa-check"></i> 8 caractères minimum, 1 Majuscule et 1 caractère spécial</small>
+                    <small id="errorPass2"><i class="fa-solid fa-check"></i> mots de passe identiques</small>
                 </div>
+
+
+
                 <div>
-                    <button class="btn btn-primary rounded-pill w-100 mt-2" type="submit">Inscription</button>
+                    <button id="subscribe" class="btn btn-primary rounded-pill w-100 " type="submit">Inscription</button>
                 </div>
 
 
