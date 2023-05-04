@@ -53,10 +53,9 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
                       
                       
                       
-                      ${!data.results[key].overview
-                    ? '<div class="card-footer text-bg-black"><span class="fw-bold fs-6 text-end ">Popularité :' +
-                        data.results[key].popularity.toFixed(0) +
-                        "</span></div>"
+                      ${!data.results[key].overview && mediaType === "person"
+                    ? '<div class="card-footer text-bg-black text-truncate"><span class="fw-bold fs-6 text-end">'
+                        + data.results[key].name + "</span></div>"
                     : '<div class="card-footer text-bg-black"><span class="fw-bold fs-6 text-end "> Score : <span>' +
                         data.results[key].vote_average.toFixed(1) +
                         "</span></span></div>"}
