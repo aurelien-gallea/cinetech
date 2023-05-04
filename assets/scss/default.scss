@@ -5,20 +5,26 @@
 @include googleFonts('Roboto:wght@200;300;400;500;700');
 @include googleFonts('Inter:wght@400;500;700');
 // modifier les couleurs de bases + dérivés
-$blue:    orange ; // primary  <---- cette couleur a été modifié pour profiter de tous les comportements (notamment les box-shadow sur les form-control par expl...)
+$blue:    #C84B31; // primary  <---- cette couleur a été modifié pour profiter de tous les comportements (notamment les box-shadow sur les form-control par expl...)
 // $red:     #dc3545 ; // danger
 // $yellow:  #0c0504 ; // warning  <---- idem
 // $green:   #198754 ; // success
-// $cyan:    #0dcaf0 ; // info
+$cyan:    #191919 ; // info
 
 // Option 2 : ajouter de nouvelles couleurs à B5 sans changer les comportements
-// notre palette de couleur diabolique 
-// $color1: #770200;
-// $color2: #c5c5c5;
-// $color3: #6e797f;
-// $color4: #0c0504;
 
+$color1: #C84B31;
+$color2: #ECDBBA;
+$color3: #2D4263;
+$color4: #191919;
 
+// on ajoute tout ça à B5
+$custom-colors: (
+    'color1': $color1,
+    'color2' : $color2,
+    'color3' : $color3,
+    'color4' : $color4,
+);
 
 // marges/padding <----- on rajoute un peu de marges
 $spacer: 1rem;
@@ -30,9 +36,7 @@ $spacers: (
     4: ($spacer * 1.5),
     5: ($spacer * 3),
     6: ($spacer * 4.5),
-    7: ($spacer * 6),
-    
-    
+    7: ($spacer * 6),  
 );
 
 // les font-sizes
@@ -60,8 +64,7 @@ $font-sizes: (
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
 
-
-// $theme-colors: map-merge($theme-colors);
+$theme-colors: map-merge($theme-colors, $custom-colors );
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss" ;
 
@@ -77,4 +80,37 @@ body {
 
 .pointer:hover {
     cursor: pointer;
+}
+
+* {
+    scrollbar-width: 20px;
+   scrollbar-color: $color1 black;
+
+}
+
+*::-webkit-scrollbar {
+    background: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 50rem;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: $color1;
+    border: 5px solid black;
+    min-width: 30px;
+    border-radius: 50rem;
+}
+
+.orange {
+    background-color: $color1;
+    color: white;
+}
+
+.orange:hover {
+    color: black;
+}
+
+.card:hover {
+    border: 2px solid $color2;
 }

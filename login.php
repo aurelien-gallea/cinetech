@@ -58,12 +58,11 @@ if(!empty($_POST['login1']) && !empty($_POST['pass1']) && !empty($_POST['pass2']
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/defaults.css">
-    <link rel="stylesheet" href="./assets/css/scrollbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Connexion/inscription | Cinetech</title>
 </head>
 
-<body class="text-bg-dark">
+<body class="text-bg-info">
 
     <?php require_once("./header.php"); ?>
 

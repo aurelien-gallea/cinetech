@@ -1,9 +1,9 @@
 <header >
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top" style="border-bottom: 1px solid orange;">
+    <nav class="navbar navbar-dark bg-black navbar-expand-lg fixed-top border-bottom border-primary" >
         <div class="container">
             <div class="navbar-brand">
                 <a href="./" class="nav-link fs-3">
-                    Cine<span style="color:orange;">Tech</span>
+                    Cine<span class="text-primary">Tech</span>
                 </a>
             </div>
             <!-- Le bouton s'affichera en petit écran -->
@@ -34,7 +34,7 @@
                     <form id="searchForm" class="rounded-pill">
                         <div class="input-group maxW-input ms-md-5">
                             
-                            <input id="searchBar" class="form-control" type="search" placeholder="Rechercher film/série/acteur...">
+                            <input id="searchBar" class="form-control border-0" type="search" placeholder="Rechercher film/série/acteur...">
                             <button id="button" class="btn btn-light orange border-0"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
