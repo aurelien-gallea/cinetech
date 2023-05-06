@@ -21,7 +21,8 @@ const myChoice = (status) => {
     }
     return title;
 };
-let count = 10;
+// nombre de pages de résultats affichés en cas de clique sur la carte "voir plus"
+let count = 15;
 if (window.location.href.includes("search")) {
     document.body.querySelector("#btnContainer")?.prepend(BtnBackMenu("movies"));
     if (window.location.href.includes("upcoming")) {
@@ -38,8 +39,8 @@ if (window.location.href.includes("search")) {
     }
 }
 else {
-    getMedia((mediaType = "movie"), (status = "upcoming"), 2, myChoice(status));
-    getMedia((mediaType = "movie"), (status = "popular"), 2, myChoice(status));
-    getMedia((mediaType = "movie"), (status = "top_rated"), 2, myChoice(status));
-    getMedia((mediaType = "trending/movie"), (status = "week"), 2, myChoice(status));
+    getMedia((mediaType = "movie"), (status = "upcoming"), 5, myChoice(status));
+    getMedia((mediaType = "movie"), (status = "popular"), 5, myChoice(status));
+    getMedia((mediaType = "movie"), (status = "top_rated"), 5, myChoice(status));
+    getMedia((mediaType = "trending/movie"), (status = "week"), 5, myChoice(status));
 }

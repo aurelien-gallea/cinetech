@@ -39,8 +39,8 @@ const findSomething = (mediaType: string, page: number) => {
             const myCard = document.createElement("a") as HTMLAnchorElement;
   
             myCard.classList.add("card", "justify-content-between", "bg-black", "nav-link");
-            myCard.style.minWidth = "200px";
-            myCard.style.maxWidth = "200px";
+            myCard.style.minWidth = "180px";
+            myCard.style.maxWidth = "180px";
             myCard.id = data.id;
             let title: string = "";
             if (newMediaType === "movie") {

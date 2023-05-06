@@ -15,6 +15,7 @@ export const getOneMedia = (mediaType, idMedia) => {
         const getDateToFrench = (date) => new Date(date).toLocaleDateString("fr-FR");
         myCard.classList.add("card", "border-0", "bg-info");
         myCard.style.minWidth = "200px";
+        myCard.style.maxWidth = "500px";
         myCard.innerHTML = `
                       
                       

@@ -24,8 +24,8 @@ export const getCasting = (mediaType, myId, myTitle) => {
                 // création d'une carte pour chaque contenu
                 const myCardCast = document.createElement("a");
                 myCardCast.classList.add("card", "mb-3", "justify-content-between", "bg-black", "nav-link");
-                myCardCast.style.minWidth = "200px";
-                myCardCast.style.maxWidth = "200px";
+                myCardCast.style.minWidth = "180px";
+                myCardCast.style.maxWidth = "180px";
                 myCardCast.id = data.cast[key].id;
                 myCardCast.href = "actors.php?id=" + myCardCast.id;
                 !data.cast[key].profile_path ? myCardCast.innerHTML += `<div><img class="img-fluid card-img-top" src=${notFindImg} alt="not found image"></div>`

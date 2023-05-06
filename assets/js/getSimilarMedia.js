@@ -26,8 +26,8 @@ export const getSimilar = (mediaType, myId, nbOfPage, myTitle) => {
                         // création d'une carte pour chaque contenu
                         const myCard = document.createElement("a");
                         myCard.classList.add("card", "mb-3", "justify-content-between", "bg-black", "nav-link");
-                        myCard.style.minWidth = "200px";
-                        myCard.style.maxWidth = "200px";
+                        myCard.style.minWidth = "180px";
+                        myCard.style.maxWidth = "180px";
                         myCard.id = data.results[key].id;
                         if (mediaType === "movie") {
                             myCard.href = "movies.php?id=" + myCard.id;

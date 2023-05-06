@@ -36,8 +36,8 @@ export const getCasting = (mediaType: string, myId: string,  myTitle : string): 
           const myCardCast = document.createElement("a") as HTMLAnchorElement;
           
           myCardCast.classList.add("card", "mb-3", "justify-content-between", "bg-black", "nav-link");
-          myCardCast.style.minWidth = "200px";
-            myCardCast.style.maxWidth = "200px";
+          myCardCast.style.minWidth = "180px";
+            myCardCast.style.maxWidth = "180px";
         myCardCast.id = data.cast[key].id;
 
         

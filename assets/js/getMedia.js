@@ -13,8 +13,8 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
     const cardShowMore = document.createElement("a");
     // on créé une carte qui sera ajouté à la fin des autres pour créer un interaction supplémentaire
     cardShowMore.classList.add("card", "mb-3", "nav-link", "justify-content-enter", "align-items-center", "bg-black");
-    cardShowMore.style.minWidth = "200px";
-    cardShowMore.style.maxWidth = "200px";
+    cardShowMore.style.minWidth = "180px";
+    cardShowMore.style.maxWidth = "180px";
     cardShowMore.innerHTML += '<div><img class="img-fluid" src="./assets/images/show-more.jpg"></div>';
     // on cache la carte si on en a pas besoin
     hiddenCardShowMore ? cardShowMore.style.display = "none" : "";
@@ -26,8 +26,8 @@ export const getMedia = (mediaType, status, nbOfPages, myTitle, hiddenCardShowMo
                 // if (data.results[key].vote_count >= 10) {
                 const myCard = document.createElement("a");
                 myCard.classList.add("card", "mb-3", "justify-content-between", "bg-black", "nav-link");
-                myCard.style.minWidth = "200px";
-                myCard.style.maxWidth = "300px";
+                myCard.style.minWidth = "180px";
+                myCard.style.maxWidth = "180px";
                 myCard.id = data.results[key].id;
                 if (mediaType === "movie") {
                     myCard.href = "movies.php?id=" + myCard.id;

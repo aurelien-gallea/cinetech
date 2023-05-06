@@ -21,10 +21,10 @@ async function getAllFavorites() {
                 arrayActor.push(data[key].id_actor);
             }
         }
-        // appel des fonctions pour creer les cartes
+        // appel des fonctions pour creer les cartes, o nveut un order film / séries / acteurs
         arrayMovie.length !== 0 ? getList("movie", arrayMovie, "Films que vous aimez") : null;
-        arraySerie.length !== 0 ? getList("tv", arraySerie, "Séries que vous aimez") : null;
-        arrayActor.length !== 0 ? getList("person", arrayActor, "Acteurs que vous aimez") : null;
+        arraySerie.length !== 0 ? setTimeout(() => getList("tv", arraySerie, "Séries que vous aimez"), 300) : null;
+        arrayActor.length !== 0 ? setTimeout(() => getList("person", arrayActor, "Acteurs que vous aimez"), 600) : null;
     })
         .catch((error) => console.log(error));
 }
@@ -44,8 +44,8 @@ const getList = (mediaType, arrayIdMedia, myTitle) => {
             console.log(data);
             const myCard = document.createElement("a");
             myCard.classList.add("card", "mb-3", "justify-content-between", "bg-black", "nav-link");
-            myCard.style.minWidth = "200px";
-            myCard.style.maxWidth = "200px";
+            myCard.style.minWidth = "180px";
+            myCard.style.maxWidth = "180px";
             myCard.id = data.id;
             if (mediaType === "movie") {
                 myCard.href = "movies.php?id=" + myCard.id;

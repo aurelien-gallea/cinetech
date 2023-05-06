@@ -20,5 +20,5 @@ if (window.location.href.includes("search")) {
   btnContainer.append(BtnBackMenu(`actors`));
   
 } else {
-    getMedia((mediaType = "person"), (status = "popular"), 3, "Acteurs Populaires");
+    getMedia((mediaType = "person"), (status = "popular"), 5, "Acteurs Populaires");
 }

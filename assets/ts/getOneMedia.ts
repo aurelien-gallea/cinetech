@@ -29,6 +29,7 @@ export const getOneMedia = (mediaType: string, idMedia: string): void => {
   
         myCard.classList.add("card", "border-0", "bg-info");
         myCard.style.minWidth = "200px";
+        myCard.style.maxWidth = "500px";
         
         myCard.innerHTML = `
                       
