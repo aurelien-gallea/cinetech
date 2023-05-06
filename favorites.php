@@ -20,7 +20,7 @@ session_start();
     <?php require_once("./src/header.php"); ?>
     <main class="mainContent flex-grow-1">
         <h1 class="text-center my-5">Mes favoris</h1>
-        <div id="myContainer" class="d-flex justify-content-center flex-wrap gap-3 mx-3">En cours de création, merci de revenir plus tard</div>
+        <div id="myContainer" class="d-flex justify-content-center flex-wrap gap-3 mx-3"></div>
     </main>
         <?php require_once("./src/footer.php"); ?>
         <script type="module" src="./assets/js/getMyFavorites.js"></script>

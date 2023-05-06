@@ -61,9 +61,9 @@ require_once('./classes/FavoritesManager.php');
     </nav>
     <?php if (!empty($_SESSION['id'])) { ?>
         <div class="text-bg-primary ">
-            <div class="container d-flex justify-content-between align-items-center">
+            <div class="container d-flex align-items-center ">
 
-                <span class=""><i class="fa-solid fa-user"></i> <?= $_SESSION['login'] ?></span>
+                <span class="col-4 col-sm-6 text-black"><i class="fa-solid fa-user"></i> <?= $_SESSION['login'] ?></span>
                 <!-- gerer l'affichage conditionnel avec la table favoris -->
                 <?php if (!empty($_GET['id'])) {
                     $id_user = $_SESSION['id'];
@@ -80,11 +80,11 @@ require_once('./classes/FavoritesManager.php');
                     
                     if ($newFavorite->alreadyFavorite($id_user, $url, $id_content) === 0) {?>
                 <form action="<?=$url?>" method="post">
-                    <button type="submit" name="addFavorite" class="btn border-0 p-0 text-white"><i class="fa-solid fa-star"></i> Ajouter aux favoris</button>
+                    <button type="submit" name="addFavorite" class="btn border-0 p-0 text-bg-white"><i class="fa-solid fa-star"></i> Ajouter aux favoris</button>
                 </form>
                 <?php } else { ?> 
                 <form action="<?=$url?>" method="post">
-                    <button type="submit" name="removeFavorite" class="btn border-0 p-0 text-white"><i class="fa-regular fa-star"></i> retirer des favoris</button>
+                    <button type="submit" name="removeFavorite" class="btn border-0 p-0 text-bg-white"><i class="fa-regular fa-star"></i> retirer des favoris</button>
                 </form>
             </div>
         </div>
