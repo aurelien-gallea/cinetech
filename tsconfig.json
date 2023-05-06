@@ -19,6 +19,8 @@
         "assets/ts/actors.ts",
         "assets/ts/getCredits.ts",
         "assets/ts/getCasting.ts",
-        "assets/ts/handleFormToggler.ts",        
+        "assets/ts/handleFormToggler.ts",
+        "assets/ts/getMyFavorites.ts",
+                
     ]
 }

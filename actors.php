@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -13,7 +14,7 @@
 
 <body class="text-bg-info">
 
-    <?php require_once("./header.php");
+    <?php require_once("./src/header.php");
     if (!empty($_GET["id"])) { ?>
         <main class="mainContent flex-grow-1">
 
@@ -28,7 +29,7 @@
 
             </div>
         </main>
-        <?php require_once("./footer.php"); ?>
+        <?php require_once("./src/footer.php"); ?>
         <script type="module" src="./assets/js/myChoice.js"></script>
     <?php } else { ?>
         <main class="mainContent flex-grow-1">
@@ -38,7 +39,7 @@
             <div id="myContainer" class="d-flex justify-content-center flex-wrap gap-3 mx-3"></div>
             
         </main>
-        <?php require_once("./footer.php"); ?>
+        <?php require_once("./src/footer.php"); ?>
         <script type="module" src="./assets/js/actors.js"></script>
     <?php } ?>
 

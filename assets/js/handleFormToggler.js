@@ -90,7 +90,7 @@ const fonctionAenleverUneFoisLeBackCode = (form) => {
         alert("cette fonctionnalité est en cours de création.");
     });
 };
-fonctionAenleverUneFoisLeBackCode(signUpForm);
-fonctionAenleverUneFoisLeBackCode(signInForm);
+// fonctionAenleverUneFoisLeBackCode(signUpForm);
+// fonctionAenleverUneFoisLeBackCode(signInForm);
 // fin de la suppression ------------------------------------------------------------------------------------------------------
 // -------------------------- connexion -------------------------------

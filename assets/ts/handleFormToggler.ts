@@ -104,8 +104,8 @@ const fonctionAenleverUneFoisLeBackCode = (form : HTMLFormElement) => {
   })
 } 
 
-fonctionAenleverUneFoisLeBackCode(signUpForm);
-fonctionAenleverUneFoisLeBackCode(signInForm);
+// fonctionAenleverUneFoisLeBackCode(signUpForm);
+// fonctionAenleverUneFoisLeBackCode(signInForm);
 // fin de la suppression ------------------------------------------------------------------------------------------------------
 
 

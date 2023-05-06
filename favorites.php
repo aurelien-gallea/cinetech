@@ -12,20 +12,18 @@ session_start();
     <link rel="stylesheet" href="./assets/css/defaults.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="./assets/images/favicon.ico" rel="icon" type="image/x-icon" />
-    <title>Accueil | Cinetech</title>
+    <title>Mes favoris | Cinetech</title>
 </head>
 
-<body class="text-bg-info" >
+<body class="text-bg-info">
 
     <?php require_once("./src/header.php"); ?>
     <main class="mainContent flex-grow-1">
-        <h1 class="text-center my-5">Bienvenue sur Cine<span class="text-primary">Tech</span></h1>
-        <div id="btnContainer" class="container d-flex justify-content-center my-4 flex-wrap gap-3"></div>
-
-        <div id="myContainer" class="d-flex justify-content-center flex-wrap gap-3 mx-3"></div>
+        <h1 class="text-center my-5">Mes favoris</h1>
+        <div id="myContainer" class="d-flex justify-content-center flex-wrap gap-3 mx-3">En cours de création, merci de revenir plus tard</div>
     </main>
         <?php require_once("./src/footer.php"); ?>
-        <script type="module" src="./assets/js/app.js"></script>
+        <script type="module" src="./assets/js/getMyFavorites.js"></script>
   
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
