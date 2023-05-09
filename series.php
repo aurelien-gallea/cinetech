@@ -18,7 +18,9 @@
     if (!empty($_GET["id"])) { ?>
         <main class="mainContent flex-grow-1">
             <h1 id="<?= $_GET["id"] ?>" class="param my-5 text-center"></h1>
-            <div id="btnContainer" class="container d-flex justify-content-between my-4 flex-wrap gap-3"></div>
+            <div id="btnContainer" class="container d-flex justify-content-between my-4 flex-wrap gap-3">
+                <?php require_once("./src/isFavorite.php"); ?>
+            </div>
             <div id="myContainer" class="container d-flex flex-column align-items-center gap-3">
 
             </div>
@@ -34,7 +36,9 @@
     <?php } else { ?>
         <main class="mainContent flex-grow-1">
             <h1 class="text-center my-5">Les Séries TV</h1>
-            <div id="btnContainer" class="container d-flex justify-content-center my-4 flex-wrap gap-3"></div>
+            <div id="btnContainer" class="container d-flex justify-content-center my-4 flex-wrap gap-3">
+            
+            </div>
 
             <div id="myContainer" class="d-flex justify-content-center flex-wrap gap-3 mx-3"></div>
         </main>
