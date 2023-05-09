@@ -1,4 +1,7 @@
 import apiKey from "./apiKey.js";
+import search from "./search.js";
+//fonction du header
+search("multi",1);
 
 const myContainer = document.querySelector("#myContainer") as HTMLDivElement;
 const notFindImg: string = "./assets/images/not-find.jpg";

@@ -1,4 +1,7 @@
 import apiKey from "./apiKey.js";
+import search from "./search.js";
+//fonction du header
+search("multi", 1);
 const myContainer = document.querySelector("#myContainer");
 const notFindImg = "./assets/images/not-find.jpg";
 const srcImg = "https://image.tmdb.org/t/p/w300";
